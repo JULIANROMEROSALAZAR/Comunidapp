@@ -115,7 +115,13 @@ function animateMovingTab(){
 
 function setMovingTabPosition(){
     $currentActive = mda.misc.sidebarMenuActive;
-    li_distance = $currentActive.parent().position().top - 10;
+    if($currentActive.parent().position()){
+        li_distance = $currentActive.parent().position().top - 10;
+    }
+    else{
+        li_distance = 0;
+    }
+    
 
     if($currentActive.closest('.collapse').length != 0){
         parent_distance = $currentActive.closest('.collapse').parent().position().top;
