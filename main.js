@@ -138,8 +138,9 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         // Initialize Firebase
         firebase__WEBPACK_IMPORTED_MODULE_6__["auth"]().onAuthStateChanged(function (user) {
-            $.getScript('../assets/js/init/initMenu.js');
-            $.getScript('../assets/js/demo.js');
+	    console.log(_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 11));
+            $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
+            $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
             if (!user) {
                 if (_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 11) != '#/security/') {
                     //Redireccionamiento a la pagina de logueo
