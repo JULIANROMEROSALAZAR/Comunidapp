@@ -120,6 +120,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+//import { MODULE_ROUTES,MODULE_COMPONENTS } from './dashboard/dashboard.routes';
+//import { firebaseConfig } from '../environments/firebaseConfig';
+//import { global } from '../environments/global';
 
 
 var AppComponent = /** @class */ (function () {
@@ -178,7 +181,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html")
+            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
         }),
         __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
@@ -479,6 +482,15 @@ var ChartsComponent = /** @class */ (function () {
         var multipleBarsChart = Chartist.Bar('#multipleBarsChart', dataMultipleBarsChart, optionsMultipleBarsChart, responsiveOptionsMultipleBarsChart);
         //start animation for the Emails Subscription Chart
         md.startAnimationForBarChart(multipleBarsChart);
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial            
+        });
     };
     ChartsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -651,7 +663,7 @@ var MODULE_COMPONENTS = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"blue\">\n                            <h4 class=\"card-title\">Somos comunidapp</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n\n                                <div class=\"col-lg-12 col-md-12 col-sm-12\">\n                                    <div class=\"dropdown\">\n                                        <button href=\"#pablo\" class=\"dropdown-toggle btn btn-primary btn-round btn-block\" data-toggle=\"dropdown\">Proyectos disponibles\n                                            <b class=\"caret\"></b>\n                                        </button>\n                                        <ul class=\"dropdown-menu dropdown-menu-center\">\n                                            <li class=\"dropdown-header\">Seleccione proyecto..</li>\n                                            <li *ngFor=\"let item of itemProyectos;\">\n                                                <button type=\"button\" class=\"btn btn-github btn-simple btn-wd btn-sm\" (click)=\"SelecProyecto(item.$key)\">{{(item)?.Nombre}}</button>\n                                            </li>\n                                            <li class=\"divider\"></li>\n                                            <li>\n                                                <a [routerLink]=\"[urlNuevoProyecto]\">Nuevo proyecto</a>\n                                            </li>\n                                        </ul>\n                                    </div>\n                                </div>\n\n                                <div class=\"col-md-4 col-sm-10 col-lg-4\">\n                                    <legend>Imagen del proyecto</legend>\n                                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                        <div class=\"fileinput-new thumbnail\">\n                                            <img  src=\"{{ (item_Proyecto?item_Proyecto.URLProyecto:'../../assets/img/image_placeholder.jpg') }}\" alt=\"...\">\n                                        </div>\n                                        <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                        <div *ngIf=\"item_Proyecto\">\n                                            <span class=\"btn btn-info btn-round btn-file\">\n                                                <span class=\"fileinput-new\">Seleccionar imagen</span>\n                                                <span class=\"fileinput-exists\">Cambiar imagen</span>\n                                                <input type=\"file\" name=\"...\" (change)=\"selectFile($event)\" accept=\".png,.jpg,.jpeg\" />\n                                            </span>\n                                            <!-- <button type=\"button\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\" ><i class=\"fa fa-times\"></i> Eliminar</button> -->\n                                            <a href=\"#image\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\"><i class=\"fa fa-times\"></i> Eliminar</a>\n                                        </div>\n                                    </div>\n                                    <div *ngIf=\"currentFileUpload\" class=\"progress\" style=\"width:400px\">\n                                        <div class=\"progress-bar progress-bar-info progress-bar-striped\"\n                                            role=\"progressbar\" attr.aria-valuenow=\"{{progress.percentage}}\"\n                                            aria-valuemin=\"0\" aria-valuemax=\"100\"\n                                            [ngStyle]=\"{width:progress.percentage+'%'}\">\n                                            {{progress.percentage}}%</div>\n                                    </div>\n                                </div>\n                                <div class=\"col-md-8 col-sm-12\">\n                                    <label class=\"col-sm-2 label-on-left\">Nombre proyecto</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Nombre=$event.target.value\" value=\"{{item_Proyecto?.Nombre}}\">\n                                            <span class=\"help-block\">Ingresa el nombre del proyecto, como se presentará en las noticias.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">    \n                                    <label class=\"col-sm-2 label-on-left\">Descripción</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Descripcion=$event.target.value\" value=\"{{item_Proyecto?.Descripcion}}\">\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">        \n                                    <label class=\"col-sm-2 label-on-left\">Recursos: $</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Recursos=$event.target.value\" value=\"{{item_Proyecto?.Recursos}}\">\n                                            <span class=\"help-block\">Incentivo para la ejecución y finalización del proyecto.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">  \n                                    <label class=\"col-sm-2 label-on-left\">Estado</label>\n                                    <div class=\"col-sm-10 checkbox-radios\">\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"{{(item_Proyecto?.Estado=='1'?'checked':'')}}\" value=\"1\" (change)=\"CambioEstado($event.target.value)\" [disabled]=\"!item_Proyecto\"> Activo\n                                            </label>\n                                        </div>\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"{{(item_Proyecto?.Estado=='1'?'':'checked')}}\" value=\"0\" (change)=\"CambioEstado(!$event.target.value)\" [disabled]=\"!item_Proyecto\"> Inactivo\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-info btn-wd btn-lg\" (click)=\"ModificarProyecto()\" [disabled]=\"!item_Proyecto\">Modificar proyecto</button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>            \n\n\n            <!-- <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"rose\">\n                            <h4 class=\"card-title\">Input Variants</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Custom Checkboxes &amp; radios</label>\n                                <div class=\"col-sm-4 col-sm-offset-1 checkbox-radios\">\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\"> Unchecked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" checked> Checked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" disabled> Disabled Unchecked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" checked disabled> Disabled Checked\n                                        </label>\n                                    </div>\n                                </div>\n                                <div class=\"col-sm-5 checkbox-radios\">\n                          \n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadios\"> Radio is off\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadios\" checked=\"true\"> Radio is on\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadiosDisabled\" disabled> Disabled Radio is off\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadiosDisabled\" checked=\"true\" disabled> Disabled Radio is on\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Input with success</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"form-group label-floating is-empty has-success\">\n                                        <label class=\"control-label\"></label>\n                                        <input type=\"text\" class=\"form-control\" value=\"Success\">\n                                        <span class=\"material-icons form-control-feedback\">done</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Input with error</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"form-group label-floating is-empty has-error\">\n                                        <label class=\"control-label\"></label>\n                                        <input type=\"text\" class=\"form-control\" value=\"Error Input\">\n                                        <span class=\"material-icons form-control-feedback\">clear</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Column sizing</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"row\">\n                                        <div class=\"col-md-3\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-3\">\n                                            </div>\n                                        </div>\n                                        <div class=\"col-md-4\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-4\">\n                                            </div>\n                                        </div>\n                                        <div class=\"col-md-5\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-5\">\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">today</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Datetime Picker</label>\n                            <input type=\"text\" class=\"form-control datetimepicker\" value=\"10/05/2016\" />\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">library_books</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Date Picker</label>\n                            <input type=\"text\" class=\"form-control datepicker\" value=\"10/10/2016\" />\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">av_timer</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Time Picker</label>\n                            <input type=\"text\" class=\"form-control timepicker\" value=\"14:00\" />\n                        </div>\n                    </div>\n                </div>\n            </div> -->\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"rose\">\n                            <h4 class=\"card-title\">Proyectos asociados a: {{ objUser.email | uppercase }}</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n\n                                <div class=\"col-lg-12 col-md-12 col-sm-12\">\n                                    <div class=\"dropdown\">\n                                        <button href=\"#pablo\" class=\"dropdown-toggle btn btn-primary btn-round btn-block\" data-toggle=\"dropdown\">Proyectos disponibles\n                                            <b class=\"caret\"></b>\n                                        </button>\n                                        <ul class=\"dropdown-menu dropdown-menu-center\">\n                                            <li class=\"dropdown-header\">Seleccione proyecto..</li>\n                                            <li *ngFor=\"let item of itemProyectos;\">\n                                                <button type=\"button\" class=\"btn btn-github btn-simple btn-wd btn-sm\" (click)=\"SelecProyecto(item.$key)\">{{(item)?.Nombre}}</button>\n                                            </li>\n                                            <li class=\"divider\"></li>\n                                            <li>\n                                                <a [routerLink]=\"[urlNuevoProyecto]\">Nuevo proyecto</a>\n                                            </li>\n                                        </ul>\n                                    </div>\n                                </div>\n\n                                <div class=\"col-md-4 col-sm-10 col-lg-4\">\n                                    <legend>Imagen del proyecto</legend>\n                                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                        <div class=\"fileinput-new thumbnail\">\n                                            <img  src=\"{{ (item_Proyecto?item_Proyecto.URLProyecto:'../../assets/img/image_placeholder.jpg') }}\" alt=\"...\">\n                                        </div>\n                                        <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                        <div *ngIf=\"item_Proyecto\">\n                                            <span class=\"btn btn-rose btn-round btn-file\">\n                                                <span class=\"fileinput-new\">Seleccionar imagen</span>\n                                                <span class=\"fileinput-exists\">Cambiar imagen</span>\n                                                <input type=\"file\" name=\"...\" (change)=\"selectFile($event)\" accept=\".png,.jpg,.jpeg\" />\n                                            </span>\n                                            <!-- <button type=\"button\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\" ><i class=\"fa fa-times\"></i> Eliminar</button> -->\n                                            <a href=\"#image\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\"><i class=\"fa fa-times\"></i> Eliminar</a>\n                                        </div>\n                                    </div>\n                                    <div *ngIf=\"currentFileUpload\" class=\"progress\" style=\"width:400px\">\n                                        <div class=\"progress-bar progress-bar-rose progress-bar-striped\"\n                                            role=\"progressbar\" attr.aria-valuenow=\"{{progress.percentage}}\"\n                                            aria-valuemin=\"0\" aria-valuemax=\"100\"\n                                            [ngStyle]=\"{width:progress.percentage+'%'}\">\n                                            {{progress.percentage}}%</div>\n                                    </div>\n                                </div>\n                                <div class=\"col-md-8 col-sm-12\">\n                                    <label class=\"col-sm-2 label-on-left\">Nombre proyecto</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Nombre=$event.target.value\" value=\"{{item_Proyecto?.Nombre}}\">\n                                            <span class=\"help-block\">Ingresa el nombre del proyecto, como se presentará en las noticias.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">    \n                                    <label class=\"col-sm-2 label-on-left\">Descripción</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <textarea class=\"form-control\" rows=\"5\" (change)=\"item_Proyecto.Descripcion=$event.target.value\" value=\"{{item_Proyecto?.Descripcion}}\"></textarea>\n                                            <!-- <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Descripcion=$event.target.value\" value=\"{{item_Proyecto?.Descripcion}}\"> -->\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">        \n                                    <label class=\"col-sm-2 label-on-left\">Recursos: $</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"item_Proyecto.Recursos=$event.target.value\" value=\"{{item_Proyecto?.Recursos}}\">\n                                            <span class=\"help-block\">Incentivo para la ejecución y finalización del proyecto.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">  \n                                    <label class=\"col-sm-2 label-on-left\">Estado</label>\n                                    <div class=\"col-sm-10 checkbox-radios\">\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"{{(item_Proyecto?.Estado=='1'?'checked':'')}}\" value=\"1\" (change)=\"CambioEstado($event.target.value)\" [disabled]=\"!item_Proyecto\"> Activo\n                                            </label>\n                                        </div>\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"{{(item_Proyecto?.Estado=='1'?'':'checked')}}\" value=\"0\" (change)=\"CambioEstado(!$event.target.value)\" [disabled]=\"!item_Proyecto\"> Inactivo\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-rose btn-wd btn-lg\" (click)=\"ModificarProyecto()\" [disabled]=\"!item_Proyecto\">Modificar proyecto</button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>            \n\n\n            <!-- <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"rose\">\n                            <h4 class=\"card-title\">Input Variants</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Custom Checkboxes &amp; radios</label>\n                                <div class=\"col-sm-4 col-sm-offset-1 checkbox-radios\">\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\"> Unchecked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" checked> Checked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" disabled> Disabled Unchecked\n                                        </label>\n                                    </div>\n                                    <div class=\"checkbox\">\n                                        <label>\n                                            <input type=\"checkbox\" name=\"optionsCheckboxes\" checked disabled> Disabled Checked\n                                        </label>\n                                    </div>\n                                </div>\n                                <div class=\"col-sm-5 checkbox-radios\">\n                          \n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadios\"> Radio is off\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadios\" checked=\"true\"> Radio is on\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadiosDisabled\" disabled> Disabled Radio is off\n                                        </label>\n                                    </div>\n                                    <div class=\"radio\">\n                                        <label>\n                                            <input type=\"radio\" name=\"optionsRadiosDisabled\" checked=\"true\" disabled> Disabled Radio is on\n                                        </label>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Input with success</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"form-group label-floating is-empty has-success\">\n                                        <label class=\"control-label\"></label>\n                                        <input type=\"text\" class=\"form-control\" value=\"Success\">\n                                        <span class=\"material-icons form-control-feedback\">done</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Input with error</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"form-group label-floating is-empty has-error\">\n                                        <label class=\"control-label\"></label>\n                                        <input type=\"text\" class=\"form-control\" value=\"Error Input\">\n                                        <span class=\"material-icons form-control-feedback\">clear</span>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <label class=\"col-sm-2 label-on-left\">Column sizing</label>\n                                <div class=\"col-sm-10\">\n                                    <div class=\"row\">\n                                        <div class=\"col-md-3\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-3\">\n                                            </div>\n                                        </div>\n                                        <div class=\"col-md-4\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-4\">\n                                            </div>\n                                        </div>\n                                        <div class=\"col-md-5\">\n                                            <div class=\"form-group label-floating is-empty\">\n                                                <label class=\"control-label\"></label>\n                                                <input type=\"text\" class=\"form-control\" placeholder=\".col-md-5\">\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">today</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Datetime Picker</label>\n                            <input type=\"text\" class=\"form-control datetimepicker\" value=\"10/05/2016\" />\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">library_books</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Date Picker</label>\n                            <input type=\"text\" class=\"form-control datepicker\" value=\"10/10/2016\" />\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">av_timer</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Datetime Picker</h4>\n                        <div class=\"form-group\">\n                            <label class=\"label-control\">Time Picker</label>\n                            <input type=\"text\" class=\"form-control timepicker\" value=\"14:00\" />\n                        </div>\n                    </div>\n                </div>\n            </div> -->\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -689,6 +701,7 @@ var ExtendedFormsComponent = /** @class */ (function () {
         this.router = router;
         this.dbProyectos = dbProyectos;
         this.urlNuevoProyecto = "../../forms/regular";
+        this.objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
         this.progress = { percentage: 0 };
         if (this.CargaInicioSesion()) {
             //carga toda la informacion de la pagina
@@ -770,9 +783,7 @@ var ExtendedFormsComponent = /** @class */ (function () {
     //Valida autenticación
     ExtendedFormsComponent.prototype.CargaInicioSesion = function () {
         if (localStorage.getItem("currentUser")) {
-            var objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
-            objUser = JSON.parse(localStorage.getItem("currentUser"));
-            //demo.Alerta("Bienvenido a Comunidapp", objUser.displayName, "success");
+            this.objUser = JSON.parse(localStorage.getItem("currentUser"));
             return true;
         }
         else {
@@ -783,12 +794,11 @@ var ExtendedFormsComponent = /** @class */ (function () {
     };
     ExtendedFormsComponent.prototype.SelecProyecto = function (key) {
         this.item_Proyecto = this.itemProyectos.find(function (x) { return x.$key == key; });
-        //console.log(key);
-        //console.log(this.item_Proyecto);
     };
     //Inicializa proyectos
     ExtendedFormsComponent.prototype.CargarProyectos = function () {
         var _this = this;
+        var uiUser = this.objUser.uid;
         var x = this.dbProyectos.getData();
         x.snapshotChanges().subscribe(function (item) {
             _this.itemProyectos = [];
@@ -799,7 +809,9 @@ var ExtendedFormsComponent = /** @class */ (function () {
                 y["Avance"] = [];
                 y["Likes"] = [];
                 //console.log(this.itemProyectos);
-                _this.itemProyectos.push(y);
+                if (y["IdUsuarioCreador"] == uiUser) {
+                    _this.itemProyectos.push(y);
+                }
             });
         });
     };
@@ -844,7 +856,7 @@ var ExtendedFormsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"blue\">\n                            <h4 class=\"card-title\">Somos comunidapp</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n                                <div class=\"col-md-4 col-sm-10 col-lg-4\">\n                                    <legend>Imagen del proyecto</legend>\n                                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                        <div class=\"fileinput-new thumbnail\">\n                                            <img src=\"../../assets/img/image_placeholder.jpg\" alt=\"...\">\n                                        </div>\n                                        <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                        <div>\n                                            <span class=\"btn btn-info btn-round btn-file\">\n                                                <span class=\"fileinput-new\">Seleccionar imagen</span>\n                                                <span class=\"fileinput-exists\">Cambiar imagen</span>\n                                                <input type=\"file\" name=\"...\" (change)=\"selectFile($event)\" accept=\".png,.jpg,.jpeg\" />\n                                            </span>\n                                            <!-- <button type=\"button\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\" ><i class=\"fa fa-times\"></i> Eliminar</button> -->\n                                            <a href=\"#image\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\"><i class=\"fa fa-times\"></i> Eliminar</a>\n                                        </div>\n                                    </div>\n                                    <div *ngIf=\"currentFileUpload\" class=\"progress\" style=\"width:400px\">\n                                        <div class=\"progress-bar progress-bar-info progress-bar-striped\"\n                                            role=\"progressbar\" attr.aria-valuenow=\"{{progress.percentage}}\"\n                                            aria-valuemin=\"0\" aria-valuemax=\"100\"\n                                            [ngStyle]=\"{width:progress.percentage+'%'}\">\n                                            {{progress.percentage}}%</div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">\n                                    <label class=\"col-sm-2 label-on-left\">Nombre proyecto</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"txtNombre=$event.target.value\">\n                                            <span class=\"help-block\">Ingresa el nombre del proyecto, como se presentará en las noticias.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">    \n                                    <label class=\"col-sm-2 label-on-left\">Descripción</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"txtDescripcion=$event.target.value\">\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">        \n                                    <label class=\"col-sm-2 label-on-left\">Recursos: $</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"txtRecursos=$event.target.value\">\n                                            <span class=\"help-block\">Incentivo para la ejecución y finalización del proyecto.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">  \n                                    <label class=\"col-sm-2 label-on-left\">Estado</label>\n                                    <div class=\"col-sm-10 checkbox-radios\">\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"true\" disabled (input)=\"chEstado=$event.target.checked\"> Activo\n                                            </label>\n                                        </div>\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" disabled> Inactivo\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-info btn-wd btn-lg\" (click)=\"CrearProyecto()\" [disabled]=\"!selectedFiles\">Crear proyecto</button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            \n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <form method=\"get\" action=\"/\" class=\"form-horizontal\">\n                        <div class=\"card-header card-header-text\" data-background-color=\"rose\">\n                            <h4 class=\"card-title\">Somos comunidapp</h4>\n                        </div>\n                        <div class=\"card-content\">\n                            <div class=\"row\">\n                                <div class=\"col-md-4 col-sm-10 col-lg-4\">\n                                    <legend>Imagen del proyecto</legend>\n                                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                        <div class=\"fileinput-new thumbnail\">\n                                            <img src=\"../../assets/img/image_placeholder.jpg\" alt=\"...\">\n                                        </div>\n                                        <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                        <div>\n                                            <span class=\"btn btn-rose btn-round btn-file\">\n                                                <span class=\"fileinput-new\">Seleccionar imagen</span>\n                                                <span class=\"fileinput-exists\">Cambiar imagen</span>\n                                                <input type=\"file\" name=\"...\" (change)=\"selectFile($event)\" accept=\".png,.jpg,.jpeg\" />\n                                            </span>\n                                            <!-- <button type=\"button\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\" ><i class=\"fa fa-times\"></i> Eliminar</button> -->\n                                            <a href=\"#image\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\"><i class=\"fa fa-times\"></i> Eliminar</a>\n                                        </div>\n                                    </div>\n                                    <div *ngIf=\"currentFileUpload\" class=\"progress\" style=\"width:400px\">\n                                        <div class=\"progress-bar progress-bar-rose progress-bar-striped\"\n                                            role=\"progressbar\" attr.aria-valuenow=\"{{progress.percentage}}\"\n                                            aria-valuemin=\"0\" aria-valuemax=\"100\"\n                                            [ngStyle]=\"{width:progress.percentage+'%'}\">\n                                            {{progress.percentage}}%</div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">\n                                    <label class=\"col-sm-2 label-on-left\">Nombre proyecto</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"txtNombre=$event.target.value\">\n                                            <span class=\"help-block\">Ingresa el nombre del proyecto, como se presentará en las noticias.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">    \n                                    <label class=\"col-sm-2 label-on-left\">Descripción</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <!-- <input type=\"text\" class=\"form-control\" (input)=\"txtDescripcion=$event.target.value\"> -->\n                                            <textarea class=\"form-control\" rows=\"5\" (change)=\"txtDescripcion=$event.target.value\"></textarea>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">        \n                                    <label class=\"col-sm-2 label-on-left\">Recursos: $</label>\n                                    <div class=\"col-sm-10\">\n                                        <div class=\"form-group label-floating is-empty\">\n                                            <label class=\"control-label\"></label>\n                                            <input type=\"text\" class=\"form-control\" (input)=\"txtRecursos=$event.target.value\">\n                                            <span class=\"help-block\">Incentivo para la ejecución y finalización del proyecto.</span>\n                                        </div>\n                                    </div>\n                                </div>\n                            <!-- </div>\n                            <div class=\"row\"> -->\n                                <div class=\"col-md-8 col-sm-12\">  \n                                    <label class=\"col-sm-2 label-on-left\">Estado</label>\n                                    <div class=\"col-sm-10 checkbox-radios\">\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" checked=\"true\" disabled (input)=\"chEstado=$event.target.checked\"> Activo\n                                            </label>\n                                        </div>\n                                        <div class=\"radio\">\n                                            <label>\n                                                <input type=\"radio\" name=\"optionsRadios\" disabled> Inactivo\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-rose btn-wd btn-lg\" (click)=\"CrearProyecto()\" [disabled]=\"!selectedFiles\">Crear proyecto</button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            \n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -959,7 +971,7 @@ var RegularFormsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n\n        \n        <!-- <div class=\"row\"> -->\n            <div *ngFor=\"let item of itemProyectos; let i = index\">\n                <div [ngClass]=\"{'row' : (i+1)%3==0}\">\n                    <div class=\"col-md-4 col-sm-6 col-12\"><!--*ngFor=\"let item of itemProyectos; let i = index\" *ngIf=\"item\"--> \n                        <div class=\"card card-product\">\n                            <div class=\"card-image\" data-header-animation=\"true\">\n                                <a href=\"#pablo\">\n                                    <img class=\"img\" src=\"{{(item)?.URLProyecto}}\">\n                                </a>\n                            </div>\n                            <div class=\"card-content\">\n                                <div class=\"card-actions\">\n                                    <button type=\"button\" class=\"btn btn-danger btn-simple fix-broken-card\"><!--fix-broken-card-->\n                                        <i class=\"material-icons\">build</i> Configurar\n                                    </button>\n                                    <button type=\"button\" class=\"btn btn-default btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Visualizar\">\n                                        <i class=\"material-icons\">art_track</i>\n                                    </button>\n                                    <button type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Editar\">\n                                        <i class=\"material-icons\">edit</i>\n                                    </button>\n                                    <button type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Aplicar\">\n                                        <i class=\"material-icons\">check</i>\n                                    </button>\n                                </div>\n                                <h4 class=\"card-title\"><!--{{itemProyectos | json}} -->\n                                    <a href=\"#pablo\">{{(item)?.Nombre}}</a>\n                                </h4>\n                                <div class=\"card-description\" style=\"max-height:180px!important;\">\n                                        {{(item)?.Descripcion}}\n                                </div>\n                            </div>\n                            <div class=\"card-footer\">\n                                <div class=\"price\">\n                                    <h4>${{(item)?.Recursos}}</h4>\n                                </div>\n                                <div class=\"stats pull-right\">\n                                    <p class=\"category\"><i class=\"material-icons\">place</i> Candelaria, Bogotá</p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        <!-- </div> -->\n\n\n\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n\n\n            <div *ngFor=\"let item of itemProyectos; let i = index\">\n                <div [ngClass]=\"{'row' : (i+1)%3==0}\">\n                    <div class=\"col-md-4 col-sm-6 col-12\"><!--*ngFor=\"let item of itemProyectos; let i = index\" *ngIf=\"item\"--> \n                        <div class=\"card card-product\">\n                            <div rel=\"tooltip\" data-placement=\"bottom\" title=\"Solucionar proyecto\" class=\"card-image\" data-header-animation=\"true\" (click)=\"AplicarProyecto(item.$key)\" role=\"button\">\n                                <a href=\"javascript:void(0)\" (click)=\"AplicarProyecto(item.$key)\">\n                                    <img class=\"img\" src=\"{{(item)?.URLProyecto}}\">\n                                </a>\n                            </div>\n                            <div class=\"card-content\">\n                                <div class=\"card-actions\">\n                                    <!-- <button type=\"button\" class=\"btn btn-danger btn-simple fix-broken-card\">\n                                        <i class=\"material-icons\">build</i> Configurar\n                                    </button>\n                                    <button type=\"button\" class=\"btn btn-default btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Visualizar\">\n                                        <i class=\"material-icons\">art_track</i>\n                                    </button> -->\n                                    <button type=\"button\" [ngClass]=\"{'btn-rose' : (item)?.Likes.length >= 1, 'btn-default' : (item)?.Likes.length == 0}\" class=\"btn btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Me encanta\"  (click)=\"MeEncantaProyecto((item)?.$key)\" role=\"button\">\n                                        {{(item)?.TotalLikes}} <i class=\"material-icons\">favorite</i> Me encanta\n                                    </button>\n                                    <!-- <button type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Solucionar proyecto\" (click)=\"AplicarProyecto(item.$key)\">\n                                        <i class=\"material-icons\">check</i>\n                                    </button> -->\n                                </div>\n                                <h4 class=\"card-title\"><!--{{itemProyectos | json}} -->\n                                    <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">{{(item)?.Nombre}}</a>\n                                </h4>\n                                <div class=\"card-description\" style=\"max-height:180px!important;\">\n                                        {{(item)?.Descripcion}}\n                                </div>\n                            </div>\n                            <div class=\"card-footer\">\n                                <div class=\"price\">\n                                    <h4>${{(item)?.Recursos}}</h4>\n                                </div>\n                                <div class=\"stats pull-right\">\n                                    <p class=\"category\"><i class=\"material-icons\">place</i> Candelaria, Bogotá</p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -977,6 +989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../model/user.model */ "./src/model/user.model.ts");
 /* harmony import */ var _services_proyectos_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/proyectos.services */ "./src/services/proyectos.services.ts");
+/* harmony import */ var _services_likes_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/likes.services */ "./src/services/likes.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -990,10 +1003,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(router, dbProyectos) {
+    function HomeComponent(router, dbProyectos, dblikes) {
         this.router = router;
         this.dbProyectos = dbProyectos;
+        this.dblikes = dblikes;
+        this.objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
         if (this.CargaInicioSesion()) {
             //carga toda la informacion de la pagina
             this.CargarProyectos();
@@ -1003,9 +1019,8 @@ var HomeComponent = /** @class */ (function () {
     //Valida autenticación
     HomeComponent.prototype.CargaInicioSesion = function () {
         if (localStorage.getItem("currentUser")) {
-            var objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
-            objUser = JSON.parse(localStorage.getItem("currentUser"));
-            demo.Alerta("Bienvenido a Comunidapp", objUser.displayName, "success");
+            this.objUser = JSON.parse(localStorage.getItem("currentUser"));
+            demo.Alerta("Bienvenido a Comunidapp", this.objUser.displayName, "success");
             return true;
         }
         else {
@@ -1023,36 +1038,106 @@ var HomeComponent = /** @class */ (function () {
             item.forEach(function (element) {
                 var y = element.payload.toJSON();
                 y["$key"] = element.key; //identificador proyecto
-                for (var i in y["Comentarios"]) {
-                    y["Comentarios"][i]["$key"] = i; //identificador comentarios
-                }
-                for (var i in y["Avance"]) {
-                    y["Avance"][i]["$key"] = i; //identificador Avance
-                }
+                // for (var i in y["Comentarios"]) {
+                //     y["Comentarios"][i]["$key"]=i;//identificador comentarios
+                // }
+                // for (var i in y["Avance"]) {
+                //     y["Avance"][i]["$key"]=i;//identificador Avance
+                // }
+                //Validación likes
+                var objLikes;
+                var iLikes = 0;
+                objLikes = [];
                 for (var i in y["Likes"]) {
-                    y["Likes"][i]["$key"] = i; //identificador Likes
+                    iLikes++;
+                    //si el usuario a dado me gusta agrega el registro de lo contrario no
+                    if (y["Likes"][i]["IdUsuario"] == _this.objUser.uid) {
+                        objLikes.push({
+                            $key: y["Likes"][i]["$key"],
+                            IdUsuario: y["Likes"][i]["IdUsuario"],
+                            FechaCreacion: y["Likes"][i]["FechaCreacion"],
+                            URLPhoto: y["Likes"][i]["URLPhoto"]
+                        });
+                    }
                 }
+                y["Likes"] = objLikes;
+                y["TotalLikes"] = iLikes;
+                //Fin validacion likes
                 _this.itemProyectos.push(y);
+                return;
             });
         });
     };
     //metodos
     HomeComponent.prototype.LlenarProyecto = function () {
     };
-    HomeComponent.prototype.ngOnInit = function () {
-        if (!$('.main-panel-security').hasClass('main-panel')) {
-            $('.main-panel-security').addClass('main-panel');
-            $('.main-panel').removeClass('main-panel-security');
+    //metodos
+    HomeComponent.prototype.AplicarProyecto = function (key) {
+        this.objProyecto = this.itemProyectos.find(function (x) { return x.$key == key; });
+        if (this.objProyecto.IdUsuarioCreador != this.objUser.uid) {
+            this.objProyecto.IdUsuarioSolucionador = this.objUser.uid;
+            this.dbProyectos.updateProyecto(this.objProyecto);
+            demo.Alerta(this.objProyecto.Nombre, "Has aplicado correctamente al proyecto Social.", "success");
         }
+        else {
+            demo.Alerta(this.objProyecto.Nombre, "Fuiste creador del proyecto, no es posible ser solucionador.", "warning");
+        }
+    };
+    HomeComponent.prototype.MeEncantaProyecto = function (keyProyect) {
+        //console.log(keyProyect)
+        this.objProyecto = this.itemProyectos.find(function (x) { return x.$key == keyProyect; });
+        if (this.objProyecto.Likes.length > 0) {
+            //console.log("Eliminar.....");
+            var keyLike = this.objProyecto.Likes[0].$key;
+            //console.log(keyLike)
+            //Elimina
+            //demo.Alerta(this.objProyecto.Nombre, "Has aplicado correctamente al proyecto Social.", "success");
+            //this.objProyecto.IdUsuarioSolucionador = this.objUser.uid;
+            if (this.objProyecto.Likes.length > 0) {
+                this.dblikes.setProyecto(keyProyect);
+                this.dblikes.deleteLikes(keyLike);
+            }
+            //demo.Alerta(this.objProyecto.Nombre, "Has aplicado correctamente al proyecto Social.", "success");
+        }
+        else {
+            //console.log("Crear.....");
+            //Crea
+            //demo.Alerta(this.objProyecto.Nombre, "Fuiste creador del proyecto, no es posible ser solucionador.", "warning");
+            this.dblikes.setProyecto(keyProyect);
+            this.dblikes.insertLikes({
+                IdUsuario: this.objUser.uid,
+                FechaCreacion: new Date().toISOString(),
+                URLPhoto: this.objUser.photoURL
+            });
+        }
+    };
+    HomeComponent.prototype.ngOnInit = function () {
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+            // if(!$('.main-panel-security').hasClass('main-panel')){
+            //     $('.main-panel-security').addClass('main-panel');
+            //     $('.main-panel').removeClass('main-panel-security');
+            // }
+        });
+        //var uint8array = new TextEncoderLite('utf-8').encode("s");
+        //var string = new TextDecoderLite('utf-8').decode(uint8array);
+        //console.log(this.Base64Encode("julian romero salazar"));
+        //console.log(this.Base64Decode(this.Base64Encode("julian romero salazar")));
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             moduleId: module.i,
             selector: ' home-cmp ',
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/dashboard/home/home.component.html"),
-            providers: [_services_proyectos_services__WEBPACK_IMPORTED_MODULE_3__["ProyectosService"]],
+            providers: [_services_proyectos_services__WEBPACK_IMPORTED_MODULE_3__["ProyectosService"], _services_likes_services__WEBPACK_IMPORTED_MODULE_4__["LikesService"]],
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_proyectos_services__WEBPACK_IMPORTED_MODULE_3__["ProyectosService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_proyectos_services__WEBPACK_IMPORTED_MODULE_3__["ProyectosService"], _services_likes_services__WEBPACK_IMPORTED_MODULE_4__["LikesService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -1068,7 +1153,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-8\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">perm_identity</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Edit Profile -\n                            <small class=\"category\">Complete your profile</small>\n                        </h4>\n                        <form>\n                            <div class=\"row\">\n                                <div class=\"col-md-5\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Company (disabled)</label>\n                                        <input type=\"text\" class=\"form-control\" disabled>\n                                    </div>\n                                </div>\n                                <div class=\"col-md-3\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Username</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Email address</label>\n                                        <input type=\"email\" class=\"form-control\">\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <div class=\"col-md-6\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Fist Name</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                                <div class=\"col-md-6\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Last Name</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Adress</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <div class=\"col-md-4\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">City</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Country</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <div class=\"form-group label-floating\">\n                                        <label class=\"control-label\">Postal Code</label>\n                                        <input type=\"text\" class=\"form-control\">\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <div class=\"form-group\">\n                                        <label>About Me</label>\n                                        <div class=\"form-group label-floating\">\n                                            <label class=\"control-label\"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>\n                                            <textarea class=\"form-control\" rows=\"5\"></textarea>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                            <button type=\"submit\" class=\"btn btn-rose pull-right\">Update Profile</button>\n                            <div class=\"clearfix\"></div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"card card-profile\">\n                    <div class=\"card-avatar\">\n                        <a href=\"#pablo\">\n                            <img class=\"img\" src=\"../../assets/img/faces/marc.jpg\" />\n                        </a>\n                    </div>\n                    <div class=\"card-content\">\n                        <h6 class=\"category text-gray\">CEO / Co-Founder</h6>\n                        <h4 class=\"card-title\">Alec Thompson</h4>\n                        <p class=\"description\">\n                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n                        </p>\n                        <a href=\"#pablo\" class=\"btn btn-rose btn-round\">Follow</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">perm_identity</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Editar perfil - \n                            <small class=\"category\">Complete su perfil</small>\n                        </h4>\n                        <!-- <form> -->\n                        <div clas=\"row\">\n                            <div class=\"col-md-12\" style=\"padding:10px\"></div>\n                        </div>\n                        <div clas=\"row\">\n                            <div class=\"col-md-12\">\n                                <div class=\"card card-profile fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                    <div class=\"card-avatar\">\n                                        <a href=\"#pablo\">\n                                            <img class=\"img\" src=\"{{ (objUsuario?.URLPhoto) }}\" />\n                                        </a>\n                                    </div>\n                                    <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                    <div *ngIf=\"objUsuario\">\n                                        <span class=\"btn btn-rose btn-round btn-file\">\n                                            <span class=\"fileinput-new\">Seleccionar imagen</span>\n                                            <span class=\"fileinput-exists\">Cambiar imagen</span>\n                                            <input type=\"file\" name=\"...\" (change)=\"selectFile($event)\" accept=\".png,.jpg,.jpeg\" />\n                                        </span>\n                                        <a href=\"#image\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\" (click)=\"uploadBorrar()\"><i class=\"fa fa-times\"></i> Eliminar</a>\n                                    </div>\n                                    <div class=\"card-content\">\n                                        <h6 class=\"category text-gray\">Perfil</h6>\n                                        <h4 class=\"card-title\">{{objUsuario?.Nombres}}</h4>\n                                        <p class=\"description\">\n                                                {{objUsuario?.QuienSoy}}\n                                        </p>\n                                        \n                                    </div>\n                                </div>\n                                <div *ngIf=\"currentFileUpload\" class=\"progress\" style=\"width:400px\">\n                                    <div class=\"progress-bar progress-bar-info progress-bar-striped\"\n                                        role=\"progressbar\" attr.aria-valuenow=\"{{progress.percentage}}\"\n                                        aria-valuemin=\"0\" aria-valuemax=\"100\"\n                                        [ngStyle]=\"{width:progress.percentage+'%'}\">\n                                        {{progress.percentage}}%</div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-md-5\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Email</label>\n                                    <input type=\"email\" class=\"form-control\" value=\"{{objUsuario?.Email}}\" disabled>\n                                </div>\n                            </div>\n                            <div class=\"col-md-7\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Nombres</label>\n                                    <input type=\"text\" class=\"form-control\" (input)=\"objUsuario.Nombres=$event.target.value\" value=\"{{objUsuario?.Nombres}}\">\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-md-6\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">De que universidad eres: </label>\n                                    <input type=\"text\" class=\"form-control\" (input)=\"objUsuario.IdUniversidad=$event.target.value\" value=\"{{objUsuario?.IdUniversidad}}\">\n                                </div>\n                            </div>\n                            <div class=\"col-md-6\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Telefono</label>\n                                    <input type=\"text\" class=\"form-control\" (input)=\"objUsuario.Telefono=$event.target.value\" value=\"{{objUsuario?.Telefono}}\">\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-md-12\">\n                                <div class=\"form-group\">\n                                    <label>Acerca de mí</label>\n                                    <div class=\"form-group\">\n                                        <label class=\"control-label\"> Breve descripción de quien soy, conocimientos y experiencia laboral. </label>\n                                        <textarea class=\"form-control\" rows=\"5\" (change)=\"objUsuario.QuienSoy=$event.target.value\">{{objUsuario?.QuienSoy}}</textarea>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <button type=\"submit\" class=\"btn btn-rose pull-right\" (click)=\"ModificarUsuario()\">Actualizar perfil</button>\n                        <div class=\"clearfix\"></div>\n                        <!-- </form> -->\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1083,22 +1168,108 @@ module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserComponent", function() { return UserComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../model/user.model */ "./src/model/user.model.ts");
+/* harmony import */ var _services_usuario_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../services/usuario.services */ "./src/services/usuario.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 
 var UserComponent = /** @class */ (function () {
-    function UserComponent() {
+    function UserComponent(router, dbUsuario) {
+        this.router = router;
+        this.dbUsuario = dbUsuario;
+        this.objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
+        this.progress = { percentage: 0 };
+        if (this.CargaInicioSesion()) {
+            //verifica y carga la existencia del usuario
+            this.CargarUsuarios();
+        }
     }
+    //Metodos
+    //Valida autenticación
+    UserComponent.prototype.CargaInicioSesion = function () {
+        if (localStorage.getItem("currentUser")) {
+            this.objUser = JSON.parse(localStorage.getItem("currentUser"));
+            return true;
+        }
+        else {
+            //Control de seguridad
+            this.objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
+            this.router.navigate(['/security/login']);
+            return false;
+        }
+    };
+    UserComponent.prototype.CreaNuevoUsuario = function () {
+        //registra la información del nuevo usuario
+        this.dbUsuario.insertUsuario(this.objUser.uid, {
+            Email: this.objUser.email,
+            IdUniversidad: '',
+            Nombres: this.objUser.displayName,
+            QuienSoy: '',
+            Telefono: '',
+            URLPhoto: (this.objUser.photoURL != "" ? this.objUser.photoURL : "assets/img/default-avatar.png"),
+            Estado: '1',
+            Perfil: '0',
+            FechaUltimoIngreso: new Date().toISOString(),
+            FechaCreacion: new Date().toISOString(),
+        });
+        //carga nuevamente el usuario
+        this.CargarUsuarios();
+    };
+    UserComponent.prototype.CambioEstado = function (value) {
+        this.objUsuario.Estado = value;
+    };
+    //Inicializa proyectos
+    UserComponent.prototype.CargarUsuarios = function () {
+        var _this = this;
+        var x = this.dbUsuario.getDataKey(this.objUser.uid);
+        x.snapshotChanges().subscribe(function (item) {
+            item.forEach(function (element) {
+                var y = element.payload.toJSON();
+                y["$key"] = element.key; //identificador proyecto
+                _this.objUsuario = y;
+            });
+            if (!item.length) {
+                _this.CreaNuevoUsuario();
+                return;
+            }
+        });
+    };
+    UserComponent.prototype.ModificarUsuario = function () {
+        //Tabla local
+        this.dbUsuario.updateUsuario(this.objUser.uid, this.objUsuario);
+        //Usuario correo
+        // firebase.auth().onAuthStateChanged((user) => {
+        //     user.updateProfile({
+        //         displayName: this.objUsuario.Nombres,
+        //         photoURL: ""
+        //     })
+        // });
+        demo.Alerta("Perfil usuario", "Se ha actualizada correctamente", "success");
+        // if() {
+        //     demo.Alerta("Perfil usuario", "Se ha actualizada correctamente", "success");
+        // }else{
+        //     demo.Alerta("Perfil usuario", "Error al actualizar verifique en intente nuevamente.", "warning");
+        // }
+    };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             moduleId: module.i,
             selector: 'user-cmp',
-            template: __webpack_require__(/*! ./user.component.html */ "./src/app/dashboard/pages/user/user.component.html")
-        })
+            template: __webpack_require__(/*! ./user.component.html */ "./src/app/dashboard/pages/user/user.component.html"),
+            providers: [_services_usuario_services__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"]],
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_usuario_services__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -1238,7 +1409,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 //validaciones y conexion
 
 
-//import { AngularFireAuth } from 'angularfire2/auth';
 
 var LoginPage = /** @class */ (function () {
     function LoginPage(router) {
@@ -1273,7 +1443,7 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.getValidarUsers = function () {
         var _this = this;
         if (_validators_email__WEBPACK_IMPORTED_MODULE_3__["EmailValidator"].isValid(this.txtEmail)) {
-            firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().createUserWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
+            firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().signInWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
                 //lineas para almacenamiento - informacion del usuario
                 _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].displayName = (authData.user.displayName ? authData.user.displayName : ""),
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].email = (authData.user.email ? authData.user.email : ""),
@@ -1324,7 +1494,7 @@ var LoginPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLockUser()}}\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"../assets/img/register.jpeg\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"card card-signup card-hidden\">\n                        <h2 class=\"card-title text-center\">Registro de usuarios</h2>\n                        <div class=\"row\">\n                            <div class=\"col-md-5 col-md-offset-1\">\n                                <div class=\"card-content\">\n                                    <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-primary\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Comunidapp</h4>\n                                            <p class=\"description\">\n                                                Aplicación multiplataforma, que permite crear lazos más estrechos entre las universidades y la comunidad en la Localidad de la Candelaria. Mediante un sistema que permitirá a la comunidad registrar proyectos sociales y a los universitarios de la localidad generar dos tipos de aportes (comentarios avanzados y participar en solución de necesidades).\n                                            </p>\n                                        </div>\n                                    </div>\n                                    <!-- <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-info\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Universidades amigas</h4>\n                                            <p class=\"description\">\n                                                El eje centrar de la plataforma es crear lazos más estrechos entre las universidades y la comunidad en la candelaria.\n                                            </p>\n                                        </div>\n                                    </div> -->\n                                </div>\n                            </div>\n                            <div class=\"col-md-5\">\n                                <!-- <div class=\"social text-center\">\n                                    <button class=\"btn btn-just-icon btn-round btn-twitter\">\n                                        <i class=\"fa fa-twitter\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-dribbble\">\n                                        <i class=\"fa fa-dribbble\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-facebook\">\n                                        <i class=\"fa fa-facebook\"> </i>\n                                    </button>\n                                    <h4> or be classical </h4>\n                                </div> -->\n                                <form class=\"form\" method=\"\" action=\"\">\n                                    <div class=\"card-content\">\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">mail</i>\n                                            </span>\n                                            <input type=\"text\" class=\"form-control\" placeholder=\"Correo...\" (input)=\"txtEmail=$event.target.value\">\n                                        </div>\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\"/>\n                                        </div>\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\"/>\n                                        </div>\n\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Confirmar password\" class=\"form-control\" (input)=\"txtConfirmarPassword=$event.target.value\"/>\n                                        </div>         \n\n                                        <!-- If you want to add a checkbox to this form, uncomment this code -->\n                                        <!-- <div class=\"checkbox\">\n                                            <label>\n                                                <input type=\"checkbox\" name=\"optionsCheckboxes\" (input)=\"uiCheck=$event.target.value\"> Acepto los\n                                                <a href=\"#something\">terminos y condiciones</a>.\n                                            </label>\n                                        </div> -->\n                                    </div>\n                                    <div class=\"footer text-center\">\n                                        <button type=\"button\" class=\"btn btn-primary btn-round\" (click)=\"getValidarUsers()\">Registrarse</button>\n                                    </div>\n                                </form>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLockUser()}}\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"../assets/img/register.jpeg\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"card card-signup card-hidden\">\n                        <h2 class=\"card-title text-center\">Registro de usuarios</h2>\n                        <div class=\"row\">\n                            <div class=\"col-md-5 col-md-offset-1\">\n                                <div class=\"card-content\">\n                                    <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-primary\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Comunidapp</h4>\n                                            <p class=\"description\">\n                                                Aplicación multiplataforma, que permite crear lazos más estrechos entre las universidades y la comunidad en la Localidad de la Candelaria. Mediante un sistema que permitirá a la comunidad registrar proyectos sociales y a los universitarios de la localidad generar dos tipos de aportes (comentarios avanzados y participar en solución de necesidades).\n                                            </p>\n                                        </div>\n                                    </div>\n                                    <!-- <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-info\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Universidades amigas</h4>\n                                            <p class=\"description\">\n                                                El eje centrar de la plataforma es crear lazos más estrechos entre las universidades y la comunidad en la candelaria.\n                                            </p>\n                                        </div>\n                                    </div> -->\n                                </div>\n                            </div>\n                            <div class=\"col-md-5\">\n                                <!-- <div class=\"social text-center\">\n                                    <button class=\"btn btn-just-icon btn-round btn-twitter\">\n                                        <i class=\"fa fa-twitter\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-dribbble\">\n                                        <i class=\"fa fa-dribbble\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-facebook\">\n                                        <i class=\"fa fa-facebook\"> </i>\n                                    </button>\n                                    <h4> or be classical </h4>\n                                </div> -->\n                                <form class=\"form\" method=\"\" action=\"\">\n                                    <div class=\"card-content\">\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">mail</i>\n                                            </span>\n                                            <input type=\"text\" class=\"form-control\" placeholder=\"Correo...\" (input)=\"txtEmail=$event.target.value\">\n                                        </div>\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\"/>\n                                        </div>\n\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Confirmar password\" class=\"form-control\" (input)=\"txtConfirmarPassword=$event.target.value\"/>\n                                        </div>         \n\n                                        <!-- If you want to add a checkbox to this form, uncomment this code -->\n                                        <!-- <div class=\"checkbox\">\n                                            <label>\n                                                <input type=\"checkbox\" name=\"optionsCheckboxes\" (input)=\"uiCheck=$event.target.value\"> Acepto los\n                                                <a href=\"#something\">terminos y condiciones</a>.\n                                            </label>\n                                        </div> -->\n                                    </div>\n                                    <div class=\"footer text-center\">\n                                        <button type=\"button\" class=\"btn btn-primary btn-round\" (click)=\"getValidarUsers()\">Registrarse</button>\n                                    </div>\n                                </form>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1398,10 +1568,10 @@ var NewPage = /** @class */ (function () {
         return "/#/security/lock";
     };
     NewPage.prototype.getValidarUsers = function () {
-        var _this = this;
         if (this.txtPassword == this.txtConfirmarPassword) {
             if (_validators_email__WEBPACK_IMPORTED_MODULE_5__["EmailValidator"].isValid(this.txtEmail)) {
-                firebase__WEBPACK_IMPORTED_MODULE_4__["auth"]().signInWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
+                //Ejecuta metodo evento promesa
+                firebase__WEBPACK_IMPORTED_MODULE_4__["auth"]().createUserWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
                     //lineas para almacenamiento - informacion del usuario
                     _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].displayName = (authData.user.displayName ? authData.user.displayName : ""),
                         _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].email = (authData.user.email ? authData.user.email : ""),
@@ -1410,7 +1580,12 @@ var NewPage = /** @class */ (function () {
                         _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].providerData = (authData.user.providerData ? authData.user.providerData : []),
                         localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"]));
                     //redireccionamiento
-                    _this.router.navigate(['/dashboard']);
+                    demo.Alerta("Creación usuario", "Usuario creado correctamente.", "success");
+                    //Finaliza sesion - control de seguridad uso de buenas practicas 
+                    // anti crfs
+                    // firebase.auth().signOut().then(() => {
+                    //   this.router.navigate(['/security/login']);
+                    // });
                 }, function (error) {
                     demo.Alerta("Creación usuario", "datos invalidos, verifique e intente nuevamente.", "warning");
                     console.log("Error creación fallido");
@@ -1449,7 +1624,7 @@ var NewPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">{{(item)?.Nombre}}</h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <input type=\"text\" placeholder=\"Escribe un mensaje\" class=\"form-control\" (input)=\"txtComentarioTexto=$event.target.value\"/>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar mensaje</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios?.slice().reverse(); let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                                <!-- <input type=\"text\" placeholder=\"Escribe un mensaje\" class=\"form-control\" (input)=\"txtComentarioTexto=$event.target.value\"/> -->\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar mensaje</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1478,23 +1653,35 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-//import initTooltips = require('../../../assets/js/init/initTooltips');
 
 
 var WidgetsComponent = /** @class */ (function () {
-    function WidgetsComponent(router, dbService) {
+    function WidgetsComponent(router, router_act, dbService) {
+        var _this = this;
         this.router = router;
+        this.router_act = router_act;
         this.dbService = dbService;
+        //Propiedades
         this.userUID = _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"];
-        this.CargaInicioSesion();
-        // if(this.CargaInicioSesion()){
-        //     //carga toda la informacion de la pagina
-        this.CargarProyectosComentarios();
-        // }
+        this.nombre_proyect = "";
+        if (this.CargaInicioSesion()) {
+            this.router_act.queryParams.subscribe(function (params) {
+                _this.nombre_proyect = params['filter'];
+                //carga toda la informacion de la pagina
+                _this.CargarProyectosComentarios();
+            });
+        }
     }
     WidgetsComponent.prototype.ngOnInit = function () {
-        //initTooltips();
-        $.getScript('../../../assets/js/init/initTooltips.js');
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial            
+        });
     };
     //Metodos
     //Valida autenticación
@@ -1512,34 +1699,86 @@ var WidgetsComponent = /** @class */ (function () {
     //Inicializa proyectos
     WidgetsComponent.prototype.CargarProyectosComentarios = function () {
         var _this = this;
-        var x = this.dbService.getProyectoData();
-        x.snapshotChanges().subscribe(function (item) {
-            _this.itemProyectos = [];
-            item.forEach(function (element) {
-                var y = element.payload.toJSON();
-                y["$key"] = element.key; //identificador proyecto
-                var objComentarios;
-                objComentarios = [];
-                for (var i in y["Comentarios"]) {
-                    //y["Comentarios"][i]["$key"]=i;//identificador comentarios
-                    objComentarios.push({
-                        $key: y["Comentarios"][i]["$key"],
-                        idUsuario: y["Comentarios"][i]["idUsuario"],
-                        Descripcion: y["Comentarios"][i]["Descripcion"],
-                        URLPhoto: y["Comentarios"][i]["URLPhoto"],
-                        FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
-                    });
-                }
-                y["Comentarios"] = objComentarios;
-                // for (var i in y["Avance"]) {
-                //     y["Avance"][i]["$key"]=i;//identificador Avance
-                // }
-                // for (var i in y["Likes"]) {
-                //     y["Likes"][i]["$key"]=i;//identificador Likes
-                // }
-                _this.itemProyectos.push(y);
+        var x;
+        if (this.nombre_proyect == undefined || this.nombre_proyect == "") {
+            x = this.dbService.getProyectoData();
+            x.snapshotChanges().subscribe(function (item) {
+                _this.itemProyectos = [];
+                item.forEach(function (element) {
+                    var y = element.payload.toJSON();
+                    y["$key"] = element.key; //identificador proyecto
+                    var objComentarios;
+                    var iComentario = 0;
+                    objComentarios = [];
+                    console.log(y["Comentarios"].length);
+                    for (var i in y["Comentarios"]) {
+                        iComentario++;
+                        if (iComentario > 4) {
+                            //Se ejecuta solo una ves y finaliza el proceso
+                            objComentarios.push({
+                                $key: "...",
+                                Id: 0,
+                                idUsuario: y["Comentarios"][i]["idUsuario"],
+                                Descripcion: y["Comentarios"][i]["Descripcion"],
+                                URLPhoto: y["Comentarios"][i]["URLPhoto"],
+                                FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
+                            });
+                            //Ordena los comentarios de ultimo a primero
+                            y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
+                            ;
+                            _this.itemProyectos.push(y);
+                            return;
+                        }
+                        objComentarios.push({
+                            $key: y["Comentarios"][i]["$key"],
+                            Id: iComentario,
+                            idUsuario: y["Comentarios"][i]["idUsuario"],
+                            Descripcion: y["Comentarios"][i]["Descripcion"],
+                            URLPhoto: y["Comentarios"][i]["URLPhoto"],
+                            FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
+                        });
+                    }
+                    //Ordena los comentarios de ultimo a primero
+                    y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
+                    _this.itemProyectos.push(y);
+                });
             });
-        });
+        }
+        else {
+            x = this.dbService.getProyectoKey(this.nombre_proyect);
+            x.snapshotChanges().subscribe(function (item) {
+                _this.itemProyectos = [];
+                item.forEach(function (element) {
+                    var y = element.payload.toJSON();
+                    y["$key"] = element.key; //identificador proyecto
+                    var objComentarios;
+                    objComentarios = [];
+                    var iComentario = 0;
+                    for (var i in y["Comentarios"]) {
+                        iComentario++;
+                        objComentarios.push({
+                            $key: y["Comentarios"][i]["$key"],
+                            Id: iComentario,
+                            idUsuario: y["Comentarios"][i]["idUsuario"],
+                            Descripcion: y["Comentarios"][i]["Descripcion"],
+                            URLPhoto: y["Comentarios"][i]["URLPhoto"],
+                            FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
+                        });
+                    }
+                    //ordena los comentarios de ultimo a primero
+                    y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
+                    // for (var i in y["Avance"]) {
+                    //     y["Avance"][i]["$key"]=i;//identificador Avance
+                    // }
+                    // for (var i in y["Likes"]) {
+                    //     y["Likes"][i]["$key"]=i;//identificador Likes
+                    // }
+                    _this.itemProyectos.push(y);
+                });
+            });
+            //this.itemProyectos.sort((a,b)=>b.Id - a.Id);
+            //this.itemProyectos.filter(x=> x.id>5);
+        }
     };
     WidgetsComponent.prototype.insComentario = function (idProyecto) {
         this.dbService.setProyecto(idProyecto); //determina a que proyecto carresponde
@@ -1558,7 +1797,7 @@ var WidgetsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./widgets.component.html */ "./src/app/dashboard/widgets/widgets.component.html"),
             providers: [_services_comentarios_services__WEBPACK_IMPORTED_MODULE_3__["ComentariosService"]],
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_comentarios_services__WEBPACK_IMPORTED_MODULE_3__["ComentariosService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _services_comentarios_services__WEBPACK_IMPORTED_MODULE_3__["ComentariosService"]])
     ], WidgetsComponent);
     return WidgetsComponent;
 }());
@@ -1662,7 +1901,7 @@ var FooterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <!-- <div class=\"navbar-minimize\">\n            <button id=\"minimizeSidebar\" class=\"btn btn-round btn-white btn-fill btn-just-icon\">\n                <i class=\"material-icons visible-on-sidebar-regular\">more_vert</i>\n                <i class=\"material-icons visible-on-sidebar-mini\">view_list</i>\n            </button>\n        </div> -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}} </a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a ng-reflect-router-link=\"dashboard\" href=\"#/dashboard\" class=\"toggled\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Noticias</p>\n                    </a>\n                </li>\n                <li id=\"li_Salir\">\n                    <a ng-reflect-router-link=\"dashboard\" href=\"#/security/login\" class=\"toggled\" (click)=\"getSalir()\"> <!-- -->\n                        <i class=\"material-icons\">logout</i>\n                        <p class=\"hidden-lg hidden-md\">Salir</p>\n                    </a>\n                </li>\n                <li class=\"separator hidden-lg hidden-md\"></li>\n            </ul>\n            <!-- <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-search is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Buscar...\" (keyup)=\"BuscarProyectos($event)\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\" (click)=\"getBuscar()\">\n                    <i class=\"material-icons\">search</i>\n                    <div class=\"ripple-container\"></div>\n                </button>\n            </form> -->\n        </div>\n    </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}} </a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a ng-reflect-router-link=\"dashboard\" href=\"#/dashboard\" class=\"toggled\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Noticias</p>\n                    </a>\n                </li>\n                <li id=\"li_Salir\">\n                    <a ng-reflect-router-link=\"dashboard\" href=\"#/security/login\" class=\"toggled\" (click)=\"getSalir()\"> <!-- -->\n                        <i class=\"material-icons\">logout</i>\n                        <p class=\"hidden-lg hidden-md\">Salir</p>\n                    </a>\n                </li>\n                <li class=\"separator hidden-lg hidden-md\"></li>\n            </ul>\n            <div *ngIf=\"isBusqueda()\" class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-search is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Buscar...\" (input)=\"txtBuscar=$event.target.value\" value=\"{{ txtBuscar }}\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\" (click)=\"getBuscar()\">\n                    <i class=\"material-icons\">search</i>\n                    <div class=\"ripple-container\"></div>\n                </button>\n            </div>\n\n        </div>\n    </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1698,24 +1937,42 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(router, location) {
+    function NavbarComponent(router, router_act, location) {
         this.router = router;
+        this.router_act = router_act;
+        this.txtBuscar = '';
         this.location = location;
     }
     NavbarComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.listTitles = _sidebar_sidebar_routes_config__WEBPACK_IMPORTED_MODULE_1__["ROUTES"].filter(function (listTitle) { return listTitle.menuType !== _sidebar_sidebar_metadata__WEBPACK_IMPORTED_MODULE_2__["MenuType"].BRAND; });
+        //Carga descripcion filtro
+        this.router_act.queryParams.subscribe(function (params) {
+            _this.txtBuscar = (params['filter'] ? (params['filter']).toLowerCase().replace() : "");
+        });
     };
     NavbarComponent.prototype.getTitle = function () {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if (titlee.charAt(0) === '#') {
             titlee = titlee.slice(2);
         }
+        if (titlee.split('?').length > 0) {
+            titlee = titlee.split('?')[0];
+        }
         for (var item = 0; item < this.listTitles.length; item++) {
             if (this.listTitles[item].path === titlee) {
                 return this.listTitles[item].title;
             }
         }
-        return 'Dashboard';
+        return 'Comunidapp';
+    };
+    NavbarComponent.prototype.isBusqueda = function () {
+        if (this.location.prepareExternalUrl(this.location.path()).toLowerCase().substring(0, 9) == '#/widgets') {
+            return true;
+        }
+        else {
+            return false;
+        }
     };
     NavbarComponent.prototype.getPath = function () {
         return this.location.prepareExternalUrl(this.location.path());
@@ -1726,9 +1983,12 @@ var NavbarComponent = /** @class */ (function () {
         this.router.navigate(['/security/login']);
     };
     NavbarComponent.prototype.getBuscar = function () {
-        new _providers_auth_data__WEBPACK_IMPORTED_MODULE_5__["AuthData"]().logoutUser();
-        localStorage.clear();
-        this.router.navigate(['/security/login']);
+        if (this.txtBuscar != "") {
+            this.router.navigate(['/widgets'], { queryParams: { filter: this.txtBuscar } });
+        }
+        else {
+            this.router.navigate(['/widgets']);
+        }
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1736,7 +1996,7 @@ var NavbarComponent = /** @class */ (function () {
             selector: 'navbar-cmp',
             template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/shared/navbar/navbar.component.html")
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -1819,7 +2079,7 @@ var ROUTES = [
     // { path: 'maps/google', title: 'Google Maps', menuType: MenuType.LEFT, icon:'pe-7s-map-marker' },
     // { path: 'maps/fullscreen', title: 'Full Screen Map', menuType: MenuType.LEFT, icon:'pe-7s-map-marker' },
     // { path: 'maps/vector', title: 'Vector Map', menuType: MenuType.LEFT, icon:'pe-7s-map-marker' },
-    { path: 'widgets', title: 'Avances', menuType: _sidebar_metadata__WEBPACK_IMPORTED_MODULE_0__["MenuType"].LEFT, icon: 'material-icons' },
+    { path: 'widgets', title: 'Aportes', menuType: _sidebar_metadata__WEBPACK_IMPORTED_MODULE_0__["MenuType"].LEFT, icon: 'material-icons' },
     { path: 'charts', title: 'Reportes', menuType: _sidebar_metadata__WEBPACK_IMPORTED_MODULE_0__["MenuType"].LEFT, icon: 'material-icons' },
 ];
 
@@ -1833,7 +2093,7 @@ var ROUTES = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "        <div class=\"logo\">\n            <!-- <div class=\"logo-normal\">\n                <a href=\"https://www.creative-tim.com\" class=\"simple-text\">\n                    Comunidapp\n                </a>\n            </div> -->\n\n            <div class=\"logo-normal\">\n                <img src=\"/assets/img/Logoapp.png\"/>\n            </div>\n        </div>\n\n\n        <div class=\"sidebar-wrapper\">\n\n            <div class=\"user\">\n                <div class=\"photo\" style=\"width:35px;height:35px;\">\n                    <img src=\"{{objUser.photoURL}}\" />\n                </div>\n                <div class=\"info\">\n                    <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                        <span>\n                            {{objUser.displayName}}\n                            <b class=\"caret\"></b>\n                        </span>\n                    </a>\n                    <div class=\"collapse\" id=\"collapseExample\">\n                        <ul class=\"nav\">\n                            <li>\n                                <a [routerLink]=\"[menuItems[2].path]\">\n                                    <span class=\"sidebar-mini\"><i class=\"material-icons\">person</i></span>\n                                    <span class=\"sidebar-normal\">{{menuItems[2].title}}</span>\n                                </a>\n                            </li>\n                            <!-- <li>\n                                <a href=\"javascript:void(0)\">\n                                    <span class=\"sidebar-mini\">EP</span>\n                                    <span class=\"sidebar-normal\">Edit Profile</span>\n                                </a>\n                            </li>\n                            <li>\n                                <a href=\"javascript:void(0)\">\n                                    <span class=\"sidebar-mini\">S</span>\n                                    <span class=\"sidebar-normal\">Settings</span>\n                                </a>\n                            </li> -->\n                        </ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"nav-container\">\n                <ul class=\"nav\">\n                    <li routerLinkActive=\"active\">\n                        <a [routerLink]=\"[menuItems[0].path]\">\n                            <i class=\"{{menuItems[0].icon}}\">dashboard</i>\n                            <p>{{menuItems[0].title}}</p>\n                        </a>\n                    </li>\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#componentsExamples\">\n                            <i class=\"material-icons\">apps</i>\n                            <p>Components\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"componentsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[3].path]\">\n                                        <span class=\"sidebar-mini\">B</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[3].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[4].path]\">\n\n                                        <span class=\"sidebar-mini\">GS</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[4].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[5].path]\">\n                                        <span class=\"sidebar-mini\">P</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[5].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[6].path]\">\n                                        <span class=\"sidebar-mini\">SA</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[6].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[7].path]\">\n                                        <span class=\"sidebar-mini\">N</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[7].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[8].path]\">\n                                        <span class=\"sidebar-mini\">I</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[8].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[9].path]\">\n                                        <span class=\"sidebar-mini\">T</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[9].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#formsExamples\">\n                            <i class=\"material-icons\">content_paste</i>\n                            <p>Proyectos\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"formsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[3].path]\">\n                                        <span class=\"sidebar-mini\">CP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[3].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[4].path]\">\n                                        <span class=\"sidebar-mini\">EP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[4].title}}</span>\n                                    </a>\n                                </li>\n                                <!-- <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[12].path]\">\n                                        <span class=\"sidebar-mini\">VF</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[12].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[13].path]\">\n                                        <span class=\"sidebar-mini\">W</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[13].title}}</span>\n                                    </a>\n                                </li> -->\n                            </ul>\n                        </div>\n                    </li>\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#tablesExamples\">\n                            <i class=\"material-icons\">grid_on</i>\n                            <p>Tables\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"tablesExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[14].path]\">\n                                        <span class=\"sidebar-mini\">RT</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[14].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[15].path]\">\n                                        <span class=\"sidebar-mini\">ET</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[15].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[16].path]\">\n                                        <span class=\"sidebar-mini\">DT</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[16].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#mapsExamples\">\n                            <i class=\"material-icons\">place</i>\n                            <p>Maps\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"mapsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[17].path]\">\n                                        <span class=\"sidebar-mini\">GM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[17].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[18].path]\">\n                                        <span class=\"sidebar-mini\">FSM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[18].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[19].path]\">\n                                        <span class=\"sidebar-mini\">VM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[19].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[5].path]\">\n                            <i class=\"{{menuItems[5].icon}}\">widgets</i>\n\n                            <p>{{menuItems[5].title}}</p>\n                        </a>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[6].path]\">\n                            <i class=\"{{menuItems[6].icon}}\">timeline</i>\n\n                            <p>{{menuItems[6].title}}</p>\n                        </a>\n                    </li>\n                    <!-- <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[22].path]\">\n                            <i class=\"{{menuItems[22].icon}}\">date_range</i>\n\n                            <p>{{menuItems[22].title}}</p>\n                        </a>\n                    </li> -->\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#pagesExamples\">\n                            <i class=\"material-icons\">image</i>\n                            <p>Pages\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"pagesExamples\">\n                            <ul class=\"nav\">\n                                <li>\n                                    <a  href=\"./pricing.html\">\n                                        <span class=\"sidebar-mini\">P</span>\n                                        <span class=\"sidebar-normal\">Pricing</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a [routerLink]=\"[menuItems[1].path]\">\n                                        <span class=\"sidebar-mini\">T</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[1].title}}</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./login.html\">\n                                        <span class=\"sidebar-mini\">LP</span>\n                                        <span class=\"sidebar-normal\">Login Page</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./register.html\">\n                                        <span class=\"sidebar-mini\">RP</span>\n                                        <span class=\"sidebar-normal\">Register Page</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./lock.html\">\n                                        <span class=\"sidebar-mini\">LSP</span>\n                                        <span class=\"sidebar-normal\">Lock Screen Page</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[2].path]\">\n                                        <span class=\"sidebar-mini\">UP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[2].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                </ul>\n            </div>\n\n        </div>\n"
+module.exports = "        <div class=\"logo\">\n            <!-- <div class=\"logo-normal\">\n                <a href=\"https://www.creative-tim.com\" class=\"simple-text\">\n                    Comunidapp\n                </a>\n            </div> -->\n\n            <div class=\"logo-normal\">\n                <img src=\"/assets/img/Logoapp.png\"/>\n            </div>\n        </div>\n\n\n        <div class=\"sidebar-wrapper\">\n\n            <div class=\"user\">\n                <div class=\"photo\" style=\"width:35px;height:35px;\">\n                    <img src=\"{{ (objUser?.photoURL) }}\" />\n                </div>\n                <div class=\"info\">\n                    <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                        <span>\n                            {{ ((objUser?.displayName).length > 19 ? (objUser?.displayName).substring(0,16) + \"...\" : (objUser?.displayName)) }}\n                            <b class=\"caret\"></b>\n                        </span>\n                    </a>\n                    <div class=\"collapse\" id=\"collapseExample\">\n                        <ul class=\"nav\">\n                            <li>\n                                <a [routerLink]=\"[menuItems[2].path]\">\n                                    <span class=\"sidebar-mini\"><i class=\"material-icons\">person</i></span>\n                                    <span class=\"sidebar-normal\">{{menuItems[2].title}}</span>\n                                </a>\n                            </li>\n                            <!-- <li>\n                                <a href=\"javascript:void(0)\">\n                                    <span class=\"sidebar-mini\">EP</span>\n                                    <span class=\"sidebar-normal\">Edit Profile</span>\n                                </a>\n                            </li>\n                            <li>\n                                <a href=\"javascript:void(0)\">\n                                    <span class=\"sidebar-mini\">S</span>\n                                    <span class=\"sidebar-normal\">Settings</span>\n                                </a>\n                            </li> -->\n                        </ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"nav-container\">\n                <ul class=\"nav\">\n                    <li routerLinkActive=\"active\">\n                        <a [routerLink]=\"[menuItems[0].path]\">\n                            <i class=\"{{menuItems[0].icon}}\">dashboard</i>\n                            <p>{{menuItems[0].title}}</p>\n                        </a>\n                    </li>\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#componentsExamples\">\n                            <i class=\"material-icons\">apps</i>\n                            <p>Components\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"componentsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[3].path]\">\n                                        <span class=\"sidebar-mini\">B</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[3].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[4].path]\">\n\n                                        <span class=\"sidebar-mini\">GS</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[4].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[5].path]\">\n                                        <span class=\"sidebar-mini\">P</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[5].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[6].path]\">\n                                        <span class=\"sidebar-mini\">SA</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[6].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[7].path]\">\n                                        <span class=\"sidebar-mini\">N</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[7].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[8].path]\">\n                                        <span class=\"sidebar-mini\">I</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[8].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[9].path]\">\n                                        <span class=\"sidebar-mini\">T</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[9].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#formsExamples\">\n                            <i class=\"material-icons\">content_paste</i>\n                            <p>Proyectos\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"formsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[3].path]\">\n                                        <span class=\"sidebar-mini\">CP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[3].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[4].path]\">\n                                        <span class=\"sidebar-mini\">EP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[4].title}}</span>\n                                    </a>\n                                </li>\n                                <!-- <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[12].path]\">\n                                        <span class=\"sidebar-mini\">VF</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[12].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[13].path]\">\n                                        <span class=\"sidebar-mini\">W</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[13].title}}</span>\n                                    </a>\n                                </li> -->\n                            </ul>\n                        </div>\n                    </li>\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#tablesExamples\">\n                            <i class=\"material-icons\">grid_on</i>\n                            <p>Tables\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"tablesExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[14].path]\">\n                                        <span class=\"sidebar-mini\">RT</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[14].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[15].path]\">\n                                        <span class=\"sidebar-mini\">ET</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[15].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[16].path]\">\n                                        <span class=\"sidebar-mini\">DT</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[16].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#mapsExamples\">\n                            <i class=\"material-icons\">place</i>\n                            <p>Maps\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"mapsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[17].path]\">\n                                        <span class=\"sidebar-mini\">GM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[17].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[18].path]\">\n                                        <span class=\"sidebar-mini\">FSM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[18].title}}</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[19].path]\">\n                                        <span class=\"sidebar-mini\">VM</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[19].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[5].path]\">\n                            <i class=\"{{menuItems[5].icon}}\">widgets</i>\n\n                            <p>{{menuItems[5].title}}</p>\n                        </a>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[6].path]\">\n                            <i class=\"{{menuItems[6].icon}}\">timeline</i>\n\n                            <p>{{menuItems[6].title}}</p>\n                        </a>\n                    </li>\n                    <!-- <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[22].path]\">\n                            <i class=\"{{menuItems[22].icon}}\">date_range</i>\n\n                            <p>{{menuItems[22].title}}</p>\n                        </a>\n                    </li> -->\n\n                    <!-- <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#pagesExamples\">\n                            <i class=\"material-icons\">image</i>\n                            <p>Pages\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"pagesExamples\">\n                            <ul class=\"nav\">\n                                <li>\n                                    <a  href=\"./pricing.html\">\n                                        <span class=\"sidebar-mini\">P</span>\n                                        <span class=\"sidebar-normal\">Pricing</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a [routerLink]=\"[menuItems[1].path]\">\n                                        <span class=\"sidebar-mini\">T</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[1].title}}</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./login.html\">\n                                        <span class=\"sidebar-mini\">LP</span>\n                                        <span class=\"sidebar-normal\">Login Page</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./register.html\">\n                                        <span class=\"sidebar-mini\">RP</span>\n                                        <span class=\"sidebar-normal\">Register Page</span>\n                                    </a>\n                                </li>\n                                <li>\n                                    <a  href=\"./lock.html\">\n                                        <span class=\"sidebar-mini\">LSP</span>\n                                        <span class=\"sidebar-normal\">Lock Screen Page</span>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[2].path]\">\n                                        <span class=\"sidebar-mini\">UP</span>\n                                        <span class=\"sidebar-normal\">{{menuItems[2].title}}</span>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li> -->\n\n                </ul>\n            </div>\n\n        </div>\n"
 
 /***/ }),
 
@@ -1851,6 +2111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sidebar_routes_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebar-routes.config */ "./src/app/sidebar/sidebar-routes.config.ts");
 /* harmony import */ var _sidebar_metadata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sidebar.metadata */ "./src/app/sidebar/sidebar.metadata.ts");
 /* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/user.model */ "./src/model/user.model.ts");
+/* harmony import */ var _services_usuario_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/usuario.services */ "./src/services/usuario.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1864,12 +2125,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var SidebarComponent = /** @class */ (function () {
-    function SidebarComponent() {
+    function SidebarComponent(dbUsuario) {
+        var _this = this;
+        this.dbUsuario = dbUsuario;
         this.objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_3__["User"];
+        this.objUser.displayName = "";
         if (localStorage.getItem("currentUser")) {
-            var objUser = _model_user_model__WEBPACK_IMPORTED_MODULE_3__["User"];
-            objUser = JSON.parse(localStorage.getItem("currentUser"));
+            var SessionUser = _model_user_model__WEBPACK_IMPORTED_MODULE_3__["User"];
+            SessionUser = JSON.parse(localStorage.getItem("currentUser"));
+            var x = this.dbUsuario.getDataKey(SessionUser.uid);
+            x.snapshotChanges().subscribe(function (item) {
+                //lineas para almacenamiento - informacion del usuario
+                item.forEach(function (element) {
+                    var y = element.payload.toJSON();
+                    _this.objUser.displayName = y["Nombres"];
+                    _this.objUser.photoURL = y["URLPhoto"];
+                });
+                if (_this.objUser.displayName == "") {
+                    _this.objUser.displayName = "Usuario";
+                }
+                localStorage.setItem("currentUser", JSON.stringify(_this.objUser));
+                return;
+            });
         }
     }
     SidebarComponent.prototype.ngOnInit = function () {
@@ -1882,8 +2161,9 @@ var SidebarComponent = /** @class */ (function () {
             moduleId: module.i,
             selector: 'sidebar-cmp',
             template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/sidebar/sidebar.component.html"),
+            providers: [_services_usuario_services__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]],
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_usuario_services__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]])
     ], SidebarComponent);
     return SidebarComponent;
 }());
@@ -2255,7 +2535,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ComentariosService = /** @class */ (function () {
-    //selectedEmployee: ComentarioModel = new ComentarioModel();
     function ComentariosService(firebase) {
         this.firebase = firebase;
         this.keyProyecto = "1";
@@ -2263,6 +2542,9 @@ var ComentariosService = /** @class */ (function () {
     }
     ComentariosService.prototype.setProyecto = function (idProyecto) {
         this.keyProyecto = idProyecto;
+    };
+    ComentariosService.prototype.getProyectoKey = function (key) {
+        return this.firebase.list("Proyecto", function (ref) { return ref.orderByChild('Nombre').equalTo(key); });
     };
     ComentariosService.prototype.getProyectoData = function () {
         return this.firebase.list("Proyecto");
@@ -2301,6 +2583,78 @@ var ComentariosService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
     ], ComentariosService);
     return ComentariosService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/services/likes.services.ts":
+/*!****************************************!*\
+  !*** ./src/services/likes.services.ts ***!
+  \****************************************/
+/*! exports provided: LikesService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LikesService", function() { return LikesService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LikesService = /** @class */ (function () {
+    function LikesService(firebase) {
+        this.firebase = firebase;
+        this.keyProyecto = "1";
+    }
+    LikesService.prototype.setProyecto = function (idProyecto) {
+        this.keyProyecto = idProyecto;
+    };
+    LikesService.prototype.getProyectoData = function () {
+        return this.firebase.list("Proyecto");
+    };
+    LikesService.prototype.getData = function () {
+        this.likesList = this.firebase.list("Proyecto/" + this.keyProyecto + "/Likes");
+        return this.likesList;
+    };
+    // Return a single observable item
+    LikesService.prototype.getItem = function (idLikes) {
+        var itemPath = "Proyecto/" + this.keyProyecto + "/Likes/" + idLikes;
+        return this.firebase.list(itemPath);
+    };
+    LikesService.prototype.insertLikes = function (likes) {
+        var itemPath = "Proyecto/" + this.keyProyecto + "/Likes";
+        this.firebase.list(itemPath).push({
+            IdUsuario: likes.IdUsuario,
+            FechaCreacion: likes.FechaCreacion,
+            URLPhoto: likes.URLPhoto
+        });
+    };
+    LikesService.prototype.updateComentarios = function (likes) {
+        this.likesList.update(likes.$key, {
+            IdUsuario: likes.IdUsuario,
+            FechaCreacion: likes.FechaCreacion
+        });
+    };
+    LikesService.prototype.deleteLikes = function ($key) {
+        this.likesList = this.firebase.list("Proyecto/" + this.keyProyecto + "/Likes");
+        this.likesList.remove($key);
+    };
+    LikesService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
+    ], LikesService);
+    return LikesService;
 }());
 
 
@@ -2352,7 +2706,7 @@ var ProyectosService = /** @class */ (function () {
             Descripcion: proyecto.Descripcion,
             Recursos: proyecto.Recursos,
             //IdUsuarioCreador : proyecto.IdUsuarioCreador,
-            //IdUsuarioSolucionador : proyecto.IdUsuarioSolucionador.,
+            IdUsuarioSolucionador: proyecto.IdUsuarioSolucionador,
             //FechaCreacion: new Date().toISOString(),
             FechaModificacion: new Date().toISOString(),
             //URLProyecto: proyecto.URLProyecto,
@@ -2361,7 +2715,6 @@ var ProyectosService = /** @class */ (function () {
     };
     ProyectosService.prototype.pushFileToStorage = function (key, fileUpload, progress) {
         var storageRef = firebase__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
-        console.log(fileUpload.file);
         var uploadTask = storageRef.child("/Proyecto/" + key + "." + fileUpload.file.name.split('.')[1]).put(fileUpload.file);
         uploadTask.on(firebase__WEBPACK_IMPORTED_MODULE_2__["storage"].TaskEvent.STATE_CHANGED, function (snapshot) {
             // in progress
@@ -2405,6 +2758,124 @@ var ProyectosService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
     ], ProyectosService);
     return ProyectosService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/services/usuario.services.ts":
+/*!******************************************!*\
+  !*** ./src/services/usuario.services.ts ***!
+  \******************************************/
+/*! exports provided: UsuarioService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsuarioService", function() { return UsuarioService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_2__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UsuarioService = /** @class */ (function () {
+    function UsuarioService(db) {
+        this.db = db;
+    }
+    UsuarioService.prototype.getData = function () {
+        this.itemRef = this.db.list("Usuarios");
+        return this.itemRef;
+    };
+    UsuarioService.prototype.getDataKey = function (key) {
+        this.itemRef = this.db.list("Usuarios/" + key);
+        return this.itemRef;
+    };
+    UsuarioService.prototype.insertUsuario = function (key, usuario) {
+        var itemPath = "Usuarios/" + key;
+        return this.db.list(itemPath).push(usuario).key;
+    };
+    UsuarioService.prototype.updateUsuario = function (key, usuario) {
+        var itemPath = "Usuarios/" + key + "/" + usuario.$key;
+        firebase__WEBPACK_IMPORTED_MODULE_2__["database"]().ref(itemPath).update({
+            Email: usuario.Email,
+            IdUniversidad: usuario.IdUniversidad,
+            Nombres: usuario.Nombres,
+            QuienSoy: usuario.QuienSoy,
+            Telefono: usuario.Telefono,
+            URLPhoto: usuario.URLPhoto,
+            FechaModificacion: new Date().toISOString(),
+            Estado: usuario.Estado
+        });
+        // .then(function() {
+        //   console.log(true);
+        //   return Promise.resolve(true);
+        //   //return false;
+        // })
+        // .catch(error => {
+        //   //console.log(error)
+        //   console.log(false);
+        //   return Promise.resolve(false);
+        //   //return false;
+        // });   
+    };
+    UsuarioService.prototype.pushFileToStorage = function (key, fileUpload, progress) {
+        var storageRef = firebase__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
+        console.log(fileUpload.file);
+        var uploadTask = storageRef.child("/Usuarios/" + key + "." + fileUpload.file.name.split('.')[1]).put(fileUpload.file);
+        uploadTask.on(firebase__WEBPACK_IMPORTED_MODULE_2__["storage"].TaskEvent.STATE_CHANGED, function (snapshot) {
+            // in progress
+            var snap = snapshot;
+            progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+        }, function (error) {
+            // fail
+            console.log(error);
+        }, function () {
+            // success
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                //actualiza la url de la imagen del proyecto
+                firebase__WEBPACK_IMPORTED_MODULE_2__["database"]().ref('Usuarios/' + key).update({
+                    URLProyecto: "" + downloadURL
+                });
+            });
+        });
+    };
+    UsuarioService.prototype.getFileUploads = function (query) {
+        if (query === void 0) { query = {}; }
+        this.fileUploads = this.db.list('/Usuarios');
+        return this.fileUploads;
+    };
+    UsuarioService.prototype.deleteFileUpload = function (fileUpload) {
+        var _this = this;
+        this.deleteFileDatabase(fileUpload.$key)
+            .then(function () {
+            _this.deleteFileStorage(fileUpload.name);
+        })
+            .catch(function (error) { return console.log(error); });
+    };
+    UsuarioService.prototype.deleteFileDatabase = function (key) {
+        return this.db.list("/Usuarios/").remove(key);
+    };
+    UsuarioService.prototype.deleteFileStorage = function (name) {
+        var storageRef = firebase__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
+        storageRef.child("/Usuarios/" + name).delete();
+    };
+    UsuarioService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
+    ], UsuarioService);
+    return UsuarioService;
 }());
 
 

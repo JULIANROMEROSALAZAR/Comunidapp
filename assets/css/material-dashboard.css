@@ -26,6 +26,13 @@
   width:400px!important;
 }
 
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;

@@ -1,4 +1,8 @@
 demo = {
+    initToolTipo: function(){
+        $('[rel="tooltip"]').tooltip();
+    },
+
     initPickColor: function(){
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
@@ -700,14 +704,14 @@ demo = {
     },
 
 	showNotification: function(from, align){
+        
         type = ['','info','success','warning','danger','rose','primary'];
 
         color = Math.floor((Math.random() * 6) + 1);
 
-    	$.notify({
+    	let noticie = $.notify({
         	icon: "notifications",
         	message: "Welcome to <b>Material Dashboard</b> - a beautiful dashboard for every web developer."
-
         },{
             type: type[color],
             timer: 3000,
