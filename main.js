@@ -138,7 +138,6 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         // Initialize Firebase
         firebase__WEBPACK_IMPORTED_MODULE_6__["auth"]().onAuthStateChanged(function (user) {
-	    console.log(_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 11));
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
             if (!user) {
@@ -327,7 +326,7 @@ var ChartsComponent = /** @class */ (function () {
     }
     ChartsComponent.prototype.ngOnInit = function () {
         //initChartsPage();
-        $.getScript('../../../assets/js/init/initChartsPage.js');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initChartsPage.js');
         var dataRoundedLineChart = {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
             series: [
@@ -1054,7 +1053,7 @@ var HomeComponent = /** @class */ (function () {
                     //si el usuario a dado me gusta agrega el registro de lo contrario no
                     if (y["Likes"][i]["IdUsuario"] == _this.objUser.uid) {
                         objLikes.push({
-                            $key: y["Likes"][i]["$key"],
+                            $key: i,
                             IdUsuario: y["Likes"][i]["IdUsuario"],
                             FechaCreacion: y["Likes"][i]["FechaCreacion"],
                             URLPhoto: y["Likes"][i]["URLPhoto"]
@@ -1085,12 +1084,12 @@ var HomeComponent = /** @class */ (function () {
         }
     };
     HomeComponent.prototype.MeEncantaProyecto = function (keyProyect) {
-        //console.log(keyProyect)
         this.objProyecto = this.itemProyectos.find(function (x) { return x.$key == keyProyect; });
         if (this.objProyecto.Likes.length > 0) {
-            //console.log("Eliminar.....");
             var keyLike = this.objProyecto.Likes[0].$key;
-            //console.log(keyLike)
+            for (var i in this.objProyecto.Likes) {
+                keyLike = this.objProyecto.Likes[i]["$key"];
+            }
             //Elimina
             //demo.Alerta(this.objProyecto.Nombre, "Has aplicado correctamente al proyecto Social.", "success");
             //this.objProyecto.IdUsuarioSolucionador = this.objUser.uid;
@@ -1101,7 +1100,6 @@ var HomeComponent = /** @class */ (function () {
             //demo.Alerta(this.objProyecto.Nombre, "Has aplicado correctamente al proyecto Social.", "success");
         }
         else {
-            //console.log("Crear.....");
             //Crea
             //demo.Alerta(this.objProyecto.Nombre, "Fuiste creador del proyecto, no es posible ser solucionador.", "warning");
             this.dblikes.setProyecto(keyProyect);
@@ -1121,15 +1119,7 @@ var HomeComponent = /** @class */ (function () {
                 body.animate({ scrollTop: 0 }, '1500');
             }
             //Fin - posicion inicial
-            // if(!$('.main-panel-security').hasClass('main-panel')){
-            //     $('.main-panel-security').addClass('main-panel');
-            //     $('.main-panel').removeClass('main-panel-security');
-            // }
         });
-        //var uint8array = new TextEncoderLite('utf-8').encode("s");
-        //var string = new TextDecoderLite('utf-8').decode(uint8array);
-        //console.log(this.Base64Encode("julian romero salazar"));
-        //console.log(this.Base64Decode(this.Base64Encode("julian romero salazar")));
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1328,6 +1318,7 @@ var LockPage = /** @class */ (function () {
     LockPage.prototype.ngOnInit = function () {
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
         $().ready(function () {
+            $(".plt-desktop").removeClass('nav-open');
             $('.main-panel').addClass('main-panel-security');
             $('.main-panel-security').removeClass('main-panel');
             demo.checkFullPageBackgroundImage();
@@ -1338,10 +1329,10 @@ var LockPage = /** @class */ (function () {
         });
     };
     LockPage.prototype.getNewUser = function () {
-        return "/#/security/new";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/new";
     };
     LockPage.prototype.getLoginUser = function () {
-        return "/#/security/login";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/login";
     };
     LockPage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1417,11 +1408,11 @@ var LoginPage = /** @class */ (function () {
         this.showNav = true;
     }
     LoginPage.prototype.ngOnInit = function () {
+        $(".plt-desktop").removeClass('nav-open');
+        $('.main-panel').addClass('main-panel-security');
+        $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
         $().ready(function () {
-            $(".plt-desktop").removeClass('nav-open');
-            $('.main-panel').addClass('main-panel-security');
-            $('.main-panel-security').removeClass('main-panel');
             demo.checkFullPageBackgroundImage();
             setTimeout(function () {
                 // after 1000 ms we add the class animated to the login/register card
@@ -1452,6 +1443,7 @@ var LoginPage = /** @class */ (function () {
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].uid = (authData.user.uid ? authData.user.uid : ""),
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].providerData = (authData.user.providerData ? authData.user.providerData : []),
                     localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
+                $('.main-panel-security').addClass('main-panel');
                 //redireccionamiento
                 _this.router.navigate(['/dashboard']);
             }, function (error) {
@@ -1467,10 +1459,10 @@ var LoginPage = /** @class */ (function () {
         }
     };
     LoginPage.prototype.getNewUser = function () {
-        return "/#/security/new";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/new";
     };
     LoginPage.prototype.getLockUser = function () {
-        return "/#/security/lock";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/lock";
     };
     LoginPage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1563,10 +1555,10 @@ var NewPage = /** @class */ (function () {
         });
     };
     NewPage.prototype.getLoginUser = function () {
-        return "/#/security/login";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/login";
     };
     NewPage.prototype.getLockUser = function () {
-        return "/#/security/lock";
+        return "https://julianromerosalazar.github.io/Comunidapp/#/security/lock";
     };
     NewPage.prototype.getValidarUsers = function () {
         if (this.txtPassword == this.txtConfirmarPassword) {
@@ -1625,7 +1617,7 @@ var NewPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                                <!-- <input type=\"text\" placeholder=\"Escribe un mensaje\" class=\"form-control\" (input)=\"txtComentarioTexto=$event.target.value\"/> -->\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar mensaje</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                                <!-- <input type=\"text\" placeholder=\"Escribe un mensaje\" class=\"form-control\" (input)=\"txtComentarioTexto=$event.target.value\"/> -->\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -2153,7 +2145,8 @@ var SidebarComponent = /** @class */ (function () {
         }
     }
     SidebarComponent.prototype.ngOnInit = function () {
-        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/sidebar-moving-tab.js');
+        $.getScript('../../assets/js/sidebar-moving-tab.js');
+        //$.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/sidebar-moving-tab.js');
         $(".main-panel").animate({ scrollTop: 0 }, "slow");
         this.menuItems = _sidebar_routes_config__WEBPACK_IMPORTED_MODULE_1__["ROUTES"].filter(function (menuItem) { return menuItem.menuType !== _sidebar_metadata__WEBPACK_IMPORTED_MODULE_2__["MenuType"].BRAND; });
     };
@@ -2648,8 +2641,7 @@ var LikesService = /** @class */ (function () {
         });
     };
     LikesService.prototype.deleteLikes = function ($key) {
-        this.likesList = this.firebase.list("Proyecto/" + this.keyProyecto + "/Likes");
-        this.likesList.remove($key);
+        this.firebase.list("Proyecto/" + this.keyProyecto + "/Likes").remove($key);
     };
     LikesService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
