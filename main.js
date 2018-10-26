@@ -1424,12 +1424,14 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.getAuthenticaGoogle = function () {
         return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().signInWithRedirect(new firebase__WEBPACK_IMPORTED_MODULE_2__["auth"].GoogleAuthProvider())
             .then(function (result) {
+            $('.main-panel-security').addClass('main-panel');
             return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().getRedirectResult;
         });
     };
     LoginPage.prototype.getAuthenticaFacebook = function () {
         return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().signInWithRedirect(new firebase__WEBPACK_IMPORTED_MODULE_2__["auth"].FacebookAuthProvider())
             .then(function (result) {
+            $('.main-panel-security').addClass('main-panel');
             return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().getRedirectResult;
         });
     };
