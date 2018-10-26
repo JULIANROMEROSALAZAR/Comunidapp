@@ -155,6 +155,7 @@ var AppComponent = /** @class */ (function () {
                     _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].providerData = (user.providerData ? user.providerData : []),
                     localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"]));
                 if (_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 16) == '#/security/login') {
+                    $('.main-panel-security').addClass('main-panel');
                     //Redireccionamiento a la pagina home
                     _this.router.navigate(['/dashboard']);
                 }
