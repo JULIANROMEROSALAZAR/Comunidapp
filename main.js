@@ -2145,8 +2145,7 @@ var SidebarComponent = /** @class */ (function () {
         }
     }
     SidebarComponent.prototype.ngOnInit = function () {
-        $.getScript('../../assets/js/sidebar-moving-tab.js');
-        //$.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/sidebar-moving-tab.js');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/sidebar-moving-tab.js');
         $(".main-panel").animate({ scrollTop: 0 }, "slow");
         this.menuItems = _sidebar_routes_config__WEBPACK_IMPORTED_MODULE_1__["ROUTES"].filter(function (menuItem) { return menuItem.menuType !== _sidebar_metadata__WEBPACK_IMPORTED_MODULE_2__["MenuType"].BRAND; });
     };
