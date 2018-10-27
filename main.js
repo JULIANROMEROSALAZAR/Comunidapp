@@ -1291,7 +1291,7 @@ var UserComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"\">\n                    <a href=\"{{getNewUser()}}\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <!--   you can change the color of the filter page using: data-color=\"blue | green | orange | red | purple\" -->\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <!-- <div class=\"card-avatar\">\n                        <a href=\"#pablo\">\n                            <img class=\"avatar\" src=\"../assets/img/faces/avatar.jpg\" alt=\"...\">\n                        </a>\n                    </div> -->\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"\">\n                    <a href=\"{{getNewUser()}}\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <!--   you can change the color of the filter page using: data-color=\"blue | green | orange | red | purple\" -->\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1317,6 +1317,8 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LockPage", function() { return LockPage; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_1__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1327,21 +1329,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var LockPage = /** @class */ (function () {
     function LockPage() {
     }
     LockPage.prototype.ngOnInit = function () {
+        $(".plt-desktop").removeClass('nav-open');
+        $('.main-panel').addClass('main-panel-security');
+        $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
         $().ready(function () {
-            $(".plt-desktop").removeClass('nav-open');
-            $('.main-panel').addClass('main-panel-security');
-            $('.main-panel-security').removeClass('main-panel');
+            //Efectomivimiento en imagen
             demo.checkFullPageBackgroundImage();
             setTimeout(function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
         });
+    };
+    LockPage.prototype.resetPassword = function () {
+        var _this = this;
+        var auth = firebase__WEBPACK_IMPORTED_MODULE_1__["auth"]();
+        return auth.sendPasswordResetEmail(this.txtEmail)
+            .then(function () { return demo.Alerta("Restableser clave", "Por favor verifica tu cuenta, hemos enviado un mensaje al correo: " + _this.txtEmail + ".", "success"); })
+            .catch(function () { return demo.Alerta("Restableser clave", "Error al envíar correo, intenta más tarde.", "warning"); });
     };
     LockPage.prototype.getNewUser = function () {
         return "https://julianromerosalazar.github.io/Comunidapp/#/security/new";
@@ -1426,9 +1437,14 @@ var LoginPage = /** @class */ (function () {
         $(".plt-desktop").removeClass('nav-open');
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
+        //material-dashboard-angular.js
         $().ready(function () {
+            //Efectomivimiento en imagen
             demo.checkFullPageBackgroundImage();
+            //Actualiza control del menu
+            mdp.initSidebarsCheck();
             setTimeout(function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
@@ -1437,7 +1453,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.getAuthenticaGoogle = function () {
         return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().signInWithRedirect(new firebase__WEBPACK_IMPORTED_MODULE_2__["auth"].GoogleAuthProvider())
-            .then(function (result) {
+            .then(function () {
             $('.main-panel-security').addClass('main-panel');
             return firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().getRedirectResult;
         });
@@ -1450,6 +1466,7 @@ var LoginPage = /** @class */ (function () {
         });
     };
     LoginPage.prototype.getValidarUsers = function () {
+        var _this = this;
         if (_validators_email__WEBPACK_IMPORTED_MODULE_3__["EmailValidator"].isValid(this.txtEmail)) {
             firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().signInWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
                 //lineas para almacenamiento - informacion del usuario
@@ -1459,11 +1476,11 @@ var LoginPage = /** @class */ (function () {
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].uid = (authData.user.uid ? authData.user.uid : ""),
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].providerData = (authData.user.providerData ? authData.user.providerData : []),
                     localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
-                //$('.main-panel-security').addClass('main-panel');     
+                $('.main-panel-security').addClass('main-panel');
+                //Actualiza control del menu
+                mdp.initSidebarsCheck();
                 //redireccionamiento
-                //this.router.navigate(['/dashboard']);
-                //window.location.reload();
-                window.location.assign("https://julianromerosalazar.github.io/Comunidapp/");
+                _this.router.navigate(['/dashboard']);
             }, function (error) {
                 demo.Alerta("Inicio sesión", "Usuario y/o clave invalida.", "warning");
                 console.log("Error loggueo fallido");
@@ -1988,10 +2005,10 @@ var NavbarComponent = /** @class */ (function () {
         return this.location.prepareExternalUrl(this.location.path());
     };
     NavbarComponent.prototype.getSalir = function () {
+        var _this = this;
         localStorage.clear();
         new _providers_auth_data__WEBPACK_IMPORTED_MODULE_5__["AuthData"]().logoutUser().then(function () {
-            //this.router.navigate(['/security/login']);
-            window.location.assign("https://julianromerosalazar.github.io/Comunidapp/");
+            _this.router.navigate(['/security/login']);
         });
     };
     NavbarComponent.prototype.getBuscar = function () {
