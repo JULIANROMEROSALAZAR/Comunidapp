@@ -14,11 +14,11 @@
 
  */
 
- mda = {
+var mda = {
     misc: {
         movingTab: '<div class="sidebar-moving-tab"/>',
         isChild: false,
-        sidebarMenuActive: ''
+        sidebarMenuActive: $('.sidebar .nav-container > .nav > li.active > a:not([data-toggle="collapse"]')
     }
  };
 
