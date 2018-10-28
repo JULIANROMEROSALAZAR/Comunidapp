@@ -25,7 +25,8 @@ demo = {
             image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>'
             $page.append(image_container);
         }
-	$('.main-panel-security').perfectScrollbar();
+        $('.main-panel').width('calc(100%)');
+        $('.main-panel').perfectScrollbar();
     },
 
     initFormExtendedDatetimepickers: function(){
