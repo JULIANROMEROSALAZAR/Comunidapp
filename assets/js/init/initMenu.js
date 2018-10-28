@@ -14,6 +14,7 @@ mdp = {
     },
 
     initSidebarsCheck: function(){
+        $sidebar = $('.sidebar');
         if($(window).width() <= 991){
             if($sidebar.length != 0){
                 mdp.initRightMenu();
@@ -22,6 +23,13 @@ mdp = {
                 mdp.initBootstrapNavbarMenu();
             }
         }
+
+        //Actualizacion -- Ing. Julian Romero Salazar
+        //if($('body').hasClass('sidebar-mini')){
+        //    mdp.misc.sidebar_mini_active = true;
+        //}
+        
+        //mdp.initMinimizeSidebar();
     },
 
     initMinimizeSidebar:function(){

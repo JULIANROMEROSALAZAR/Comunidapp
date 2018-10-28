@@ -1118,6 +1118,7 @@ var HomeComponent = /** @class */ (function () {
                 body.animate({ scrollTop: 0 }, '1500');
             }
             //Fin - posicion inicial
+            $("body > div.navbar-collapse").remove();
         });
     };
     HomeComponent = __decorate([
@@ -1291,7 +1292,7 @@ var UserComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"\">\n                    <a href=\"{{getNewUser()}}\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <!--   you can change the color of the filter page using: data-color=\"blue | green | orange | red | purple\" -->\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"\">\n                    <a href=\"{{getNewUser()}}\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <!--   you can change the color of the filter page using: data-color=\"blue | green | orange | red | purple\" -->\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\" (click)=\"resetPassword()\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1338,6 +1339,7 @@ var LockPage = /** @class */ (function () {
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         $().ready(function () {
             //Efectomivimiento en imagen
             demo.checkFullPageBackgroundImage();
@@ -1345,6 +1347,10 @@ var LockPage = /** @class */ (function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            //Actualiza control del menu
+            if (mdp) {
+                mdp.initSidebarsCheck();
+            }
         });
     };
     LockPage.prototype.resetPassword = function () {
@@ -1437,18 +1443,20 @@ var LoginPage = /** @class */ (function () {
         $(".plt-desktop").removeClass('nav-open');
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
-        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         //material-dashboard-angular.js
         $().ready(function () {
             //Efectomivimiento en imagen
             demo.checkFullPageBackgroundImage();
-            //Actualiza control del menu
-            mdp.initSidebarsCheck();
             setTimeout(function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            //Actualiza control del menu
+            if (mdp) {
+                mdp.initSidebarsCheck();
+            }
         });
     };
     LoginPage.prototype.getAuthenticaGoogle = function () {
@@ -1477,8 +1485,10 @@ var LoginPage = /** @class */ (function () {
                     _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].providerData = (authData.user.providerData ? authData.user.providerData : []),
                     localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
                 $('.main-panel-security').addClass('main-panel');
+                //inicia control
+                $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
                 //Actualiza control del menu
-                mdp.initSidebarsCheck();
+                //if(mdp){ mdp.initSidebarsCheck(); }        
                 //redireccionamiento
                 _this.router.navigate(['/dashboard']);
             }, function (error) {
@@ -1577,16 +1587,22 @@ var NewPage = /** @class */ (function () {
         localStorage.clear();
     }
     NewPage.prototype.ngOnInit = function () {
+        $(".plt-desktop").removeClass('nav-open');
+        $('.main-panel').addClass('main-panel-security');
+        $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
+        $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         $().ready(function () {
-            $(".plt-desktop").removeClass('nav-open');
-            $('.main-panel').addClass('main-panel-security');
-            $('.main-panel-security').removeClass('main-panel');
+            //Efectomivimiento en imagen
             demo.checkFullPageBackgroundImage();
             setTimeout(function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            //Actualiza control del menu
+            if (mdp) {
+                mdp.initSidebarsCheck();
+            }
         });
     };
     NewPage.prototype.getLoginUser = function () {
