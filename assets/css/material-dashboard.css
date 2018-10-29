@@ -5355,6 +5355,7 @@ h2.title {
 .off-canvas-sidebar .sidebar-wrapper .navbar-form {
   border: none;
   box-shadow: none;
+  font-size: 10px;
 }
 .sidebar .sidebar-wrapper .nav [data-toggle="collapse"] ~ div > ul > li > a span,
 .sidebar .sidebar-wrapper .user .info [data-toggle="collapse"] ~ div > ul > li > a span,

@@ -1347,6 +1347,7 @@ var LockPage = /** @class */ (function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
             if (mdp) {
                 mdp.initSidebarsCheck();
@@ -1453,6 +1454,7 @@ var LoginPage = /** @class */ (function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
             if (mdp) {
                 mdp.initSidebarsCheck();
@@ -1599,6 +1601,7 @@ var NewPage = /** @class */ (function () {
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+            $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
             if (mdp) {
                 mdp.initSidebarsCheck();
@@ -1668,7 +1671,7 @@ var NewPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                                <!-- <input type=\"text\" placeholder=\"Escribe un mensaje\" class=\"form-control\" (input)=\"txtComentarioTexto=$event.target.value\"/> -->\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\"></h6>\n                            <div class=\"icon\">\n                                <i class=\"material-icons\">extension</i>\n                            </div>\n                            <h3 class=\"card-title\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>\n                            \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1754,32 +1757,24 @@ var WidgetsComponent = /** @class */ (function () {
                     var objComentarios;
                     var iComentario = 0;
                     objComentarios = [];
+                    //recorre la cantidad de comentarios
+                    var iLengthComentario = 0;
+                    for (var i in y["Comentarios"]) {
+                        iLengthComentario++;
+                    }
+                    //fin recorrido de comentarios
                     for (var i in y["Comentarios"]) {
                         iComentario++;
-                        if (iComentario > 4) {
-                            //Se ejecuta solo una ves y finaliza el proceso
+                        if (iComentario >= iLengthComentario - 3) {
                             objComentarios.push({
-                                $key: "...",
-                                Id: 0,
+                                $key: (iComentario == iLengthComentario - 3 && iComentario >= 3 ? "..." : i),
+                                Id: iComentario,
                                 idUsuario: y["Comentarios"][i]["idUsuario"],
                                 Descripcion: y["Comentarios"][i]["Descripcion"],
                                 URLPhoto: y["Comentarios"][i]["URLPhoto"],
                                 FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
                             });
-                            //Ordena los comentarios de ultimo a primero
-                            y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
-                            ;
-                            _this.itemProyectos.push(y);
-                            return;
                         }
-                        objComentarios.push({
-                            $key: y["Comentarios"][i]["$key"],
-                            Id: iComentario,
-                            idUsuario: y["Comentarios"][i]["idUsuario"],
-                            Descripcion: y["Comentarios"][i]["Descripcion"],
-                            URLPhoto: y["Comentarios"][i]["URLPhoto"],
-                            FechaCreacion: y["Comentarios"][i]["FechaCreacion"],
-                        });
                     }
                     //Ordena los comentarios de ultimo a primero
                     y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
@@ -1800,7 +1795,7 @@ var WidgetsComponent = /** @class */ (function () {
                     for (var i in y["Comentarios"]) {
                         iComentario++;
                         objComentarios.push({
-                            $key: y["Comentarios"][i]["$key"],
+                            $key: i,
                             Id: iComentario,
                             idUsuario: y["Comentarios"][i]["idUsuario"],
                             Descripcion: y["Comentarios"][i]["Descripcion"],
@@ -2863,21 +2858,9 @@ var UsuarioService = /** @class */ (function () {
             FechaModificacion: new Date().toISOString(),
             Estado: usuario.Estado
         });
-        // .then(function() {
-        //   console.log(true);
-        //   return Promise.resolve(true);
-        //   //return false;
-        // })
-        // .catch(error => {
-        //   //console.log(error)
-        //   console.log(false);
-        //   return Promise.resolve(false);
-        //   //return false;
-        // });   
     };
     UsuarioService.prototype.pushFileToStorage = function (key, keyImagen, fileUpload, progress) {
         var storageRef = firebase__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
-        console.log(fileUpload.file);
         var uploadTask = storageRef.child("/Usuarios/" + key + "." + fileUpload.file.name.split('.')[1]).put(fileUpload.file);
         uploadTask.on(firebase__WEBPACK_IMPORTED_MODULE_2__["storage"].TaskEvent.STATE_CHANGED, function (snapshot) {
             // in progress
