@@ -25,6 +25,7 @@ demo = {
             image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>'
             $page.append(image_container);
         }
+
         $('ion-app > div.wrapper').perfectScrollbar();
     },
 
@@ -308,7 +309,8 @@ demo = {
     },
 
     //Mensajes avanzadas Comunidapp
-    Alerta:function(titulo, mensaje, type){
+    Alerta:function(titulo, mensaje, type, actions = ""){
+
         if(type == 'success'){
             swal({
                 title: titulo,
@@ -316,6 +318,30 @@ demo = {
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
                 type: "success"
+            });
+        }
+        else if(type == 'confirmacion'){
+            swal({
+                title: titulo,
+                text: mensaje,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Si',
+                //cancelButtonText: 'No',
+                buttonsStyling: false
+            }).then(function() {
+            
+                eval(actions);
+                //   swal({
+                //     title: 'Deleted!',
+                //     text: 'Your file has been deleted.',
+                //     type: 'success',
+                //     confirmButtonClass: "btn btn-success",
+                //     buttonsStyling: false
+                //     })
+            
             });
         }
         else{
@@ -722,5 +748,8 @@ demo = {
             }
         });
 	}
+
+}
+
 
 }
