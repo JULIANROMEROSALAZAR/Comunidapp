@@ -309,6 +309,35 @@ demo = {
     },
 
     //Mensajes avanzadas Comunidapp
+    Confirmacion:function(titulo, mensaje, type, actions){
+
+        if(type == 'success'){
+            swal({
+                title: titulo,
+                text: mensaje,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No',
+                buttonsStyling: false
+            }).then(function() {
+                eval(actions);
+            });
+        }
+        else{
+            swal({
+                title: titulo,
+                text: mensaje,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "warning"
+            });
+        }
+    },
+
+    //Mensajes avanzadas Comunidapp
     Alerta:function(titulo, mensaje, type){
 
         if(type == 'success'){
@@ -329,7 +358,7 @@ demo = {
                 confirmButtonClass: 'btn btn-success',
                 cancelButtonClass: 'btn btn-danger',
                 confirmButtonText: 'Si',
-                //cancelButtonText: 'No',
+                cancelButtonText: 'No',
                 buttonsStyling: false
             }).then(function() {
             
@@ -748,8 +777,5 @@ demo = {
             }
         });
 	}
-
-}
-
 
 }
