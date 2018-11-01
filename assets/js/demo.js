@@ -311,7 +311,7 @@ demo = {
     //Mensajes avanzadas Comunidapp
     Confirmacion:function(titulo, mensaje, type, actions){
 
-        if(type == 'success'){
+        if(type == 'confirmacionSINO'){
             swal({
                 title: titulo,
                 text: mensaje,
@@ -324,6 +324,8 @@ demo = {
                 buttonsStyling: false
             }).then(function() {
                 eval(actions);
+            }).catch(function(){
+                return;
             });
         }
         else{
