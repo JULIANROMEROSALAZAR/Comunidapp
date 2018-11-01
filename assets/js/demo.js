@@ -349,30 +349,6 @@ demo = {
                 type: "success"
             });
         }
-        else if(type == 'confirmacion'){
-            swal({
-                title: titulo,
-                text: mensaje,
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                confirmButtonText: 'Si',
-                cancelButtonText: 'No',
-                buttonsStyling: false
-            }).then(function() {
-            
-                eval(actions);
-                //   swal({
-                //     title: 'Deleted!',
-                //     text: 'Your file has been deleted.',
-                //     type: 'success',
-                //     confirmButtonClass: "btn btn-success",
-                //     buttonsStyling: false
-                //     })
-            
-            });
-        }
         else{
             swal({
                 title: titulo,
