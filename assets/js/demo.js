@@ -309,7 +309,7 @@ demo = {
     },
 
     //Mensajes avanzadas Comunidapp
-    Alerta:function(titulo, mensaje, type, actions = ""){
+    Alerta:function(titulo, mensaje, type){
 
         if(type == 'success'){
             swal({
