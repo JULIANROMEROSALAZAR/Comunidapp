@@ -98,12 +98,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/index.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../model/user.model */ "./src/model/user.model.ts");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../model/user.model */ "./src/model/user.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -118,26 +115,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
-//import { MODULE_ROUTES,MODULE_COMPONENTS } from './dashboard/dashboard.routes';
-//import { firebaseConfig } from '../environments/firebaseConfig';
-//import { global } from '../environments/global';
-
-
 var AppComponent = /** @class */ (function () {
-    //public pageAthenticate: boolean = false;
-    function AppComponent(platform, splashScreen, statusBar, navCtrl, router, location) {
-        this.splashScreen = splashScreen;
-        this.statusBar = statusBar;
-        this.navCtrl = navCtrl;
+    function AppComponent(router, location) {
         this.router = router;
         this.location = location;
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Initialize Firebase
-        firebase__WEBPACK_IMPORTED_MODULE_6__["auth"]().onAuthStateChanged(function (user) {
+        firebase__WEBPACK_IMPORTED_MODULE_3__["auth"]().onAuthStateChanged(function (user) {
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
             if (!user) {
@@ -148,12 +134,11 @@ var AppComponent = /** @class */ (function () {
             }
             else {
                 //lineas para almacenamiento - informacion del usuario
-                _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].displayName = (user.displayName ? user.displayName : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].email = (user.email ? user.email : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].photoURL = (user.photoURL ? user.photoURL : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].uid = (user.uid ? user.uid : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"].providerData = (user.providerData ? user.providerData : []),
-                    localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_7__["User"]));
+                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].displayName = (user.displayName ? user.displayName : ""),
+                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].email = (user.email ? user.email : ""),
+                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].photoURL = (user.photoURL ? user.photoURL : ""),
+                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].uid = (user.uid ? user.uid : ""),
+                    localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
                 if (_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 16) == '#/security/login') {
                     $('.main-panel-security').addClass('main-panel');
                     //Redireccionamiento a la pagina home
@@ -177,19 +162,13 @@ var AppComponent = /** @class */ (function () {
         else {
             return true;
         }
-        //return this.pageAthenticate;
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
         }),
-        __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
-            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
-            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -325,7 +304,15 @@ var ChartsComponent = /** @class */ (function () {
     function ChartsComponent() {
     }
     ChartsComponent.prototype.ngOnInit = function () {
-        //initChartsPage();
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+        });
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initChartsPage.js');
         var dataRoundedLineChart = {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -613,10 +600,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _charts_charts_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./charts/charts.component */ "./src/app/dashboard/charts/charts.component.ts");
 /* harmony import */ var _widgets_widgets_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./widgets/widgets.component */ "./src/app/dashboard/widgets/widgets.component.ts");
 /* harmony import */ var _pages_user_user_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/user/user.component */ "./src/app/dashboard/pages/user/user.component.ts");
-/* harmony import */ var _security_login_login_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./security/login/login.page */ "./src/app/dashboard/security/login/login.page.ts");
-/* harmony import */ var _security_new_new_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./security/new/new.page */ "./src/app/dashboard/security/new/new.page.ts");
-/* harmony import */ var _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./security/lock/lock.page */ "./src/app/dashboard/security/lock/lock.page.ts");
-/* harmony import */ var _providers_auth_guard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../providers/auth.guard */ "./src/providers/auth.guard.ts");
+/* harmony import */ var _pages_userLine_userLine_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/userLine/userLine.component */ "./src/app/dashboard/pages/userLine/userLine.component.ts");
+/* harmony import */ var _security_login_login_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./security/login/login.page */ "./src/app/dashboard/security/login/login.page.ts");
+/* harmony import */ var _security_new_new_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./security/new/new.page */ "./src/app/dashboard/security/new/new.page.ts");
+/* harmony import */ var _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./security/lock/lock.page */ "./src/app/dashboard/security/lock/lock.page.ts");
+/* harmony import */ var _providers_auth_guard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../providers/auth.guard */ "./src/providers/auth.guard.ts");
 
 
 
@@ -627,30 +615,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var objAcceso = new _providers_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]().PageInit();
+
+var objAcceso = new _providers_auth_guard__WEBPACK_IMPORTED_MODULE_10__["AuthGuard"]().PageInit();
 var MODULE_ROUTES = [
     { path: '', redirectTo: objAcceso, pathMatch: 'full' },
     { path: 'dashboard', component: _home_home_component__WEBPACK_IMPORTED_MODULE_0__["HomeComponent"] },
-    { path: 'security/login', component: _security_login_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"] },
-    { path: 'security/new', component: _security_new_new_page__WEBPACK_IMPORTED_MODULE_7__["NewPage"] },
-    { path: 'security/lock', component: _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_8__["LockPage"] },
+    { path: 'security/login', component: _security_login_login_page__WEBPACK_IMPORTED_MODULE_7__["LoginPage"] },
+    { path: 'security/new', component: _security_new_new_page__WEBPACK_IMPORTED_MODULE_8__["NewPage"] },
+    { path: 'security/lock', component: _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_9__["LockPage"] },
     { path: 'forms/regular', component: _forms_regularforms_regularforms_component__WEBPACK_IMPORTED_MODULE_2__["RegularFormsComponent"] },
     { path: 'forms/extended', component: _forms_extendedforms_extendedforms_component__WEBPACK_IMPORTED_MODULE_1__["ExtendedFormsComponent"] },
     { path: 'charts', component: _charts_charts_component__WEBPACK_IMPORTED_MODULE_3__["ChartsComponent"] },
     { path: 'widgets', component: _widgets_widgets_component__WEBPACK_IMPORTED_MODULE_4__["WidgetsComponent"] },
     { path: 'pages/user', component: _pages_user_user_component__WEBPACK_IMPORTED_MODULE_5__["UserComponent"] },
+    { path: 'pages/userline', component: _pages_userLine_userLine_component__WEBPACK_IMPORTED_MODULE_6__["UserLineComponent"] },
 ];
 //
 var MODULE_COMPONENTS = [
     _home_home_component__WEBPACK_IMPORTED_MODULE_0__["HomeComponent"],
-    _security_login_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"],
-    _security_new_new_page__WEBPACK_IMPORTED_MODULE_7__["NewPage"],
-    _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_8__["LockPage"],
+    _security_login_login_page__WEBPACK_IMPORTED_MODULE_7__["LoginPage"],
+    _security_new_new_page__WEBPACK_IMPORTED_MODULE_8__["NewPage"],
+    _security_lock_lock_page__WEBPACK_IMPORTED_MODULE_9__["LockPage"],
     _forms_extendedforms_extendedforms_component__WEBPACK_IMPORTED_MODULE_1__["ExtendedFormsComponent"],
     _forms_regularforms_regularforms_component__WEBPACK_IMPORTED_MODULE_2__["RegularFormsComponent"],
     _charts_charts_component__WEBPACK_IMPORTED_MODULE_3__["ChartsComponent"],
     _widgets_widgets_component__WEBPACK_IMPORTED_MODULE_4__["WidgetsComponent"],
-    _pages_user_user_component__WEBPACK_IMPORTED_MODULE_5__["UserComponent"]
+    _pages_user_user_component__WEBPACK_IMPORTED_MODULE_5__["UserComponent"],
+    _pages_userLine_userLine_component__WEBPACK_IMPORTED_MODULE_6__["UserLineComponent"]
 ];
 
 
@@ -709,6 +700,15 @@ var ExtendedFormsComponent = /** @class */ (function () {
         }
     }
     ExtendedFormsComponent.prototype.ngOnInit = function () {
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+        });
         // Sliders for demo purpose
         this.sliderPorcentaje = $('#sliderPorcentaje').noUiSlider({
             start: 0,
@@ -718,71 +718,6 @@ var ExtendedFormsComponent = /** @class */ (function () {
                 max: 100
             }
         });
-        //         $('.datetimepicker').datetimepicker({
-        //             icons: {
-        //                 time: "fa fa-clock-o",
-        //                 date: "fa fa-calendar",
-        //                 up: "fa fa-chevron-up",
-        //                 down: "fa fa-chevron-down",
-        //                 previous: 'fa fa-chevron-left',
-        //                 next: 'fa fa-chevron-right',
-        //                 today: 'fa fa-screenshot',
-        //                 clear: 'fa fa-trash',
-        //                 close: 'fa fa-remove',
-        //                 inline: true
-        //             }
-        //          });
-        //          $('.datepicker').datetimepicker({
-        //             format: 'MM/DD/YYYY',
-        //             icons: {
-        //                 time: "fa fa-clock-o",
-        //                 date: "fa fa-calendar",
-        //                 up: "fa fa-chevron-up",
-        //                 down: "fa fa-chevron-down",
-        //                 previous: 'fa fa-chevron-left',
-        //                 next: 'fa fa-chevron-right',
-        //                 today: 'fa fa-screenshot',
-        //                 clear: 'fa fa-trash',
-        //                 close: 'fa fa-remove',
-        //                 inline: true
-        //             }
-        //          });
-        //          $('.timepicker').datetimepicker({
-        // //          format: 'H:mm',    // use this format if you want the 24hours timepicker
-        //             format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
-        //             icons: {
-        //                 time: "fa fa-clock-o",
-        //                 date: "fa fa-calendar",
-        //                 up: "fa fa-chevron-up",
-        //                 down: "fa fa-chevron-down",
-        //                 previous: 'fa fa-chevron-left',
-        //                 next: 'fa fa-chevron-right',
-        //                 today: 'fa fa-screenshot',
-        //                 clear: 'fa fa-trash',
-        //                 close: 'fa fa-remove',
-        //                 inline: true
-        //             }
-        //          });   
-        //         // Sliders for demo purpose in refine cards section
-        //         // Sliders for demo purpose
-        //         $('#sliderRegular').noUiSlider({
-        //             start: 40,
-        //             connect: "lower",
-        //             range: {
-        //                 min: 0,
-        //                 max: 100
-        //             }
-        //         });
-        //         $('#sliderDouble').noUiSlider({
-        //             start: [20, 60] ,
-        //             connect: true,
-        //             range: {
-        //                 min: 0,
-        //                 max: 100
-        //             }
-        //         });
-        // initDatetimepickers();
-        // initSliders();
     };
     ExtendedFormsComponent.prototype.CambioEstado = function (value) {
         if (value == "true") {
@@ -930,6 +865,15 @@ var RegularFormsComponent = /** @class */ (function () {
         }
     };
     RegularFormsComponent.prototype.ngOnInit = function () {
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+        });
     };
     RegularFormsComponent.prototype.selectFile = function (event) {
         var file = event.target.files.item(0);
@@ -991,7 +935,7 @@ var RegularFormsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n\n\n            <div *ngFor=\"let item of itemProyectos; let i = index\">\n                <div [ngClass]=\"{'row' : (i+1)%3==0}\">\n                    <div class=\"col-md-4 col-sm-6 col-12\"><!--col-md-4 col-sm-6 col-12--> \n                        <div class=\"card card-product\">\n                            <div rel=\"tooltip\" data-placement=\"bottom\" title=\"Solucionar proyecto\" class=\"card-image\" data-header-animation=\"true\" (click)=\"AplicarProyecto(item.$key)\" role=\"button\">\n                                <a href=\"javascript:void(0)\" (click)=\"AplicarProyecto(item.$key)\">\n                                    <img class=\"img\" src=\"{{(item)?.URLProyecto}}\">\n                                </a>\n                            </div>\n                            <div class=\"card-content\">\n                                <div class=\"card-actions\">\n                                    <!-- <button type=\"button\" class=\"btn btn-danger btn-simple fix-broken-card\">\n                                        <i class=\"material-icons\">build</i> Configurar\n                                    </button>\n                                    <button type=\"button\" class=\"btn btn-default btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Visualizar\">\n                                        <i class=\"material-icons\">art_track</i>\n                                    </button> -->\n                                    <button type=\"button\" [ngClass]=\"{'btn-rose' : (item)?.Likes.length >= 1, 'btn-default' : (item)?.Likes.length == 0}\" class=\"btn btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Me encanta\"  (click)=\"MeEncantaProyecto((item)?.$key)\" role=\"button\">\n                                        {{(item)?.TotalLikes}} <i class=\"material-icons\">favorite</i> Me encanta\n                                    </button>\n                                    <!-- <button type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Solucionar proyecto\" (click)=\"AplicarProyecto(item.$key)\">\n                                        <i class=\"material-icons\">check</i>\n                                    </button> -->\n                                </div>\n                                <h4 class=\"card-title\"><!--{{itemProyectos | json}} -->\n                                    <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">{{(item)?.Nombre}}</a>\n                                </h4>\n                                <div class=\"card-description\" style=\"max-height:180px!important;\">\n                                    {{(item)?.Descripcion}}\n                                </div>\n                            </div>\n                            <div class=\"card-footer\">\n                                <div class=\"price\">\n                                    <h4>${{(item)?.Recursos}}</h4>\n                                </div>\n                                <div class=\"stats pull-right\">\n                                    <p class=\"category\"><i class=\"material-icons\">place</i> Candelaria, Bogotá</p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n\n\n            <div *ngFor=\"let item of itemProyectos; let i = index\">\n                <div [ngClass]=\"{'row' : (i+1)%3==0}\">\n                    <div class=\"col-md-4 col-sm-6 col-12\">\n                        <div class=\"card card-product\">\n                            <div rel=\"tooltip\" data-placement=\"bottom\" title=\"Solucionar proyecto\" class=\"card-image\" data-header-animation=\"true\" (click)=\"AplicarProyecto(item.$key)\" role=\"button\">\n                                <a href=\"javascript:void(0)\" (click)=\"AplicarProyecto(item.$key)\">\n                                    <img class=\"img\" src=\"{{(item)?.URLProyecto}}\">\n                                </a>\n                            </div>\n                            <div class=\"card-content\">\n                                <div class=\"card-actions\">\n                                    <button type=\"button\" [ngClass]=\"{'btn-rose' : (item)?.Likes.length >= 1, 'btn-default' : (item)?.Likes.length == 0}\" class=\"btn btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Me encanta\"  (click)=\"MeEncantaProyecto((item)?.$key)\" role=\"button\">\n                                        {{(item)?.TotalLikes}} <i class=\"material-icons\">favorite</i> Me encanta\n                                    </button>\n                                </div>\n                                <h4 class=\"card-title\">\n                                    <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">{{(item)?.Nombre}}</a>\n                                </h4>\n                                <div class=\"card-description\" style=\"max-height:180px!important;\">\n                                    {{(item)?.Descripcion}}\n                                </div>\n                            </div>\n                            <div class=\"card-footer\">\n                                <div class=\"price\">\n                                    <h4>$ {{(item)?.Recursos}}</h4>\n                                </div>\n                                <div class=\"stats pull-right\">\n                                    <p class=\"category\"><i class=\"material-icons\">place</i> Candelaria, Bogotá</p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1085,9 +1029,6 @@ var HomeComponent = /** @class */ (function () {
                 return;
             });
         });
-    };
-    //metodos
-    HomeComponent.prototype.LlenarProyecto = function () {
     };
     //metodos
     HomeComponent.prototype.AplicarProyecto = function (key) {
@@ -1241,7 +1182,7 @@ var UserComponent = /** @class */ (function () {
             Estado: '1',
             Perfil: '0',
             FechaUltimoIngreso: new Date().toISOString(),
-            FechaCreacion: new Date().toISOString(),
+            FechaCreacion: new Date().toISOString()
         });
         //carga nuevamente el usuario
         this.CargarUsuarios();
@@ -1288,13 +1229,18 @@ var UserComponent = /** @class */ (function () {
         this.upload(this.objUser.uid, this.objUsuario.$key);
         //Tabla local
         this.dbUsuario.updateUsuario(this.objUser.uid, this.objUsuario);
-        //key =this.objUser.uid
         demo.Alerta("Perfil usuario", "Se ha actualizada correctamente", "success");
-        // if() {
-        //     demo.Alerta("Perfil usuario", "Se ha actualizada correctamente", "success");
-        // }else{
-        //     demo.Alerta("Perfil usuario", "Error al actualizar verifique en intente nuevamente.", "warning");
-        // }
+    };
+    UserComponent.prototype.ngOnInit = function () {
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+        });
     };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1312,6 +1258,112 @@ var UserComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/dashboard/pages/userLine/userLine.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/dashboard/pages/userLine/userLine.component.ts ***!
+  \****************************************************************/
+/*! exports provided: UserLineComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserLineComponent", function() { return UserLineComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_usuario_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../services/usuario.services */ "./src/services/usuario.services.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserLineComponent = /** @class */ (function () {
+    function UserLineComponent(router, router_act, dbUsuario) {
+        var _this = this;
+        this.router = router;
+        this.router_act = router_act;
+        this.dbUsuario = dbUsuario;
+        if (this.CargaInicioSesion()) {
+            this.router_act.queryParams.subscribe(function (params) {
+                var strkeyUser = params['filter'];
+                _this.CargarUsuarios(strkeyUser); //carga toda la informacion de la pagina
+            });
+        }
+    }
+    //Metodos
+    //Valida autenticación
+    UserLineComponent.prototype.CargaInicioSesion = function () {
+        if (localStorage.getItem("currentUser")) {
+            return true;
+        }
+        else {
+            //Control de seguridad
+            this.router.navigate(['/security/login']);
+            return false;
+        }
+    };
+    UserLineComponent.prototype.CambioEstado = function (value) {
+        this.objUsuario.Estado = value;
+    };
+    //Inicializa proyectos
+    UserLineComponent.prototype.CargarUsuarios = function (keyUser) {
+        var _this = this;
+        var x = this.dbUsuario.getDataKey(keyUser);
+        x.snapshotChanges().subscribe(function (item) {
+            item.forEach(function (element) {
+                var y = element.payload.toJSON();
+                y["$key"] = element.key; //identificador proyecto
+                _this.objUsuario = y;
+            });
+            if (!item.length) {
+                return;
+            }
+        });
+    };
+    UserLineComponent.prototype.ngOnInit = function () {
+        $().ready(function () {
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+        });
+    };
+    UserLineComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            moduleId: module.i,
+            selector: 'userline-cmp',
+            template: __webpack_require__(/*! ./userline.component.html */ "./src/app/dashboard/pages/userLine/userline.component.html"),
+            providers: [_services_usuario_services__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]],
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _services_usuario_services__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]])
+    ], UserLineComponent);
+    return UserLineComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/pages/userLine/userline.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/dashboard/pages/userLine/userline.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-icon\" data-background-color=\"rose\">\n                        <i class=\"material-icons\">perm_identity</i>\n                    </div>\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Perfil del usuario</h4>\n\n                        <div clas=\"row\">\n                            <div class=\"col-md-12\" style=\"padding:10px\"></div>\n                        </div>\n                        <div clas=\"row\">\n                            <div class=\"col-md-12\">\n                                <div class=\"card card-profile fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                    <div class=\"card-avatar\">\n                                        <img class=\"img thumbnail\" src=\"{{ (objUsuario?.URLPhoto) }}\" />\n                                    </div>\n                                    <div class=\"card-content\">\n                                        <h6 class=\"category text-gray\">Perfil</h6>\n                                        <h4 class=\"card-title\">{{objUsuario?.Nombres}}</h4>\n                                        <p class=\"description\">\n                                            {{objUsuario?.QuienSoy}}\n                                        </p>                                        \n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-md-5\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Email</label>\n                                    <span class=\"form-control\">{{objUsuario?.Email}}</span>\n                                </div>\n                            </div>\n                            <div class=\"col-md-7\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Nombres</label>\n                                    <span class=\"form-control\">{{objUsuario?.Nombres}}</span>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-md-6\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">De que universidad eres: </label>\n                                    <span class=\"form-control\">{{objUsuario?.IdUniversidad}}</span>\n                                </div>\n                            </div>\n                            <div class=\"col-md-6\">\n                                <div class=\"form-group\">\n                                    <label class=\"control-label\">Telefono</label>\n                                    <span class=\"form-control\">{{objUsuario?.Telefono}}</span>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"clearfix\"></div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+
+/***/ }),
+
 /***/ "./src/app/dashboard/security/lock/lock.page.html":
 /*!********************************************************!*\
   !*** ./src/app/dashboard/security/lock/lock.page.html ***!
@@ -1319,7 +1371,7 @@ var UserComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"\">\n                    <a href=\"{{ getNewUser() }}\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{ getLoginUser() }}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\" (click)=\"resetPassword()\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy; {{ anioActual }}\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"/#/dashboard\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a [routerLink]=\"['/security/new']\"> <!--  href=\"{{ getNewUser() }}\" -->\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li>\n                    <a [routerLink]=\"['/security/login']\"> <!-- href=\"{{ getLoginUser() }}\"-->\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\" active \">\n                    <a [routerLink]=\"['/security/lock']\"> <!-- href=\"javascript:void(0)\"-->\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page lock-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/lock.jpeg\">\n        <div class=\"content\">\n            <form method=\"#\" action=\"#\">\n                <div class=\"card card-profile card-hidden\">\n                    <div class=\"card-content\">\n                        <h4 class=\"card-title\">Ingresa tu correo para restablecer tu cuenta</h4>\n                        <div class=\"form-group label-floating\">\n                            <label class=\"control-label\">Correo electronico</label>\n                            <input type=\"text\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                        </div>\n                    </div>\n                    <div class=\"card-footer\">\n                        <button type=\"button\" class=\"btn btn-info btn-round\" (click)=\"resetPassword()\">Activar cuenta</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy; {{ anioActual }}\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1344,9 +1396,10 @@ module.exports = ""
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LockPage", function() { return LockPage; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_2__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1358,8 +1411,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var LockPage = /** @class */ (function () {
-    function LockPage() {
+    function LockPage(router) {
+        this.router = router;
         this.anioActual = new Date().getFullYear();
     }
     LockPage.prototype.ngOnInit = function () {
@@ -1377,16 +1432,23 @@ var LockPage = /** @class */ (function () {
             }, 700);
             $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
-            if (mdp) {
-                mdp.initSidebarsCheck();
+            try {
+                if (mdp) {
+                    mdp.initSidebarsCheck();
+                }
             }
+            catch (e) { }
         });
     };
     LockPage.prototype.resetPassword = function () {
         var _this = this;
-        var auth = firebase__WEBPACK_IMPORTED_MODULE_1__["auth"]();
+        var auth = firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]();
         return auth.sendPasswordResetEmail(this.txtEmail)
-            .then(function () { return demo.Alerta("Restableser clave", "Por favor verifica tu cuenta, hemos enviado un mensaje al correo: " + _this.txtEmail + ".", "success"); })
+            .then(function () {
+            demo.Alerta("Restableser clave", "Por favor verifica tu cuenta, hemos enviado un mensaje al correo: " + _this.txtEmail + ".", "success");
+            //redireccionamiento
+            _this.router.navigate(['/security/login']);
+        })
             .catch(function () { return demo.Alerta("Restableser clave", "Error al envíar correo, intenta más tarde.", "warning"); });
     };
     LockPage.prototype.getNewUser = function () {
@@ -1396,13 +1458,13 @@ var LockPage = /** @class */ (function () {
         return "https://julianromerosalazar.github.io/Comunidapp/#/security/login";
     };
     LockPage = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             moduleId: module.i,
             selector: 'app-lock',
             template: __webpack_require__(/*! ./lock.page.html */ "./src/app/dashboard/security/lock/lock.page.html"),
             styles: [__webpack_require__(/*! ./lock.page.scss */ "./src/app/dashboard/security/lock/lock.page.scss")],
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"]])
     ], LockPage);
     return LockPage;
 }());
@@ -1418,7 +1480,7 @@ var LockPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n      <div class=\"navbar-header\">\n          <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n              <span class=\"sr-only\">Toggle navigation</span>\n              <span class=\"icon-bar\"></span>\n              <span class=\"icon-bar\"></span>\n              <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n      </div>\n      <div class=\"collapse navbar-collapse\">\n          <ul class=\"nav navbar-nav navbar-right\">\n              <li class=\"\">\n                  <a href=\"{{getNewUser()}}\">\n                      <i class=\"material-icons\">person_add</i> Regístrate\n                  </a>\n              </li>\n              <li class=\" active \">\n                  <a href=\"javascript:void(0)\">\n                      <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                  </a>\n              </li>\n              <li class=\"\">\n                  <a href=\"{{getLockUser()}}\">\n                      <i class=\"material-icons\">lock_open</i> Olvide clave?\n                  </a>\n              </li>\n          </ul>\n      </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page toggle\">\n  <div class=\"full-page login-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/login.jpeg\">\n      <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n      <div class=\"content\">\n          <div class=\"container\">\n              <div class=\"row\">\n                  <div class=\"col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3\">\n                      <!-- <form> -->\n                          <div class=\"card card-login card-hidden\">\n                              <div class=\"card-header text-center\" data-background-color=\"blue\">\n                                  <h4 class=\"card-title\">Inicio de sesión</h4>\n                                  <div class=\"social-line\">\n                                      <button type=\"button\" class=\"btn btn-just-icon btn-simple\" (click)=\"getAuthenticaFacebook()\">\n                                            <i class=\"fa fa-facebook-square\"></i>\n                                      </button>\n                                      <button type=\"button\" class=\"btn btn-just-icon btn-simple\" (click)=\"getAuthenticaGoogle()\">\n                                            <i class=\"fa fa-google-plus\"></i>\n                                      </button>\n                                  </div>\n                              </div>\n                              <p class=\"category text-center\">\n                                  ó Ingreso clasico\n                              </p>\n                              <div class=\"card-content\">\n                                  <div class=\"input-group\">\n                                      <span class=\"input-group-addon\">\n                                          <i class=\"material-icons\">email</i>\n                                      </span>\n                                      <div class=\"form-group label-floating\">\n                                          <label class=\"control-label\">Correo electronico</label>\n                                          <input type=\"email\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                                      </div>\n                                  </div>\n                                  <div class=\"input-group\">\n                                      <span class=\"input-group-addon\">\n                                          <i class=\"material-icons\">lock_outline</i>\n                                      </span>\n                                      <div class=\"form-group label-floating\">\n                                          <label class=\"control-label\">Clave de acceso</label>\n                                          <input type=\"password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\">\n                                      </div>\n                                  </div>\n                              </div>\n                              <div class=\"footer text-center\">\n                                  <button type=\"button\" class=\"btn btn-info btn-simple btn-wd btn-lg\" (click)=\"getValidarUsers()\">Acceder</button>\n                              </div>\n                          </div>\n                      <!-- </form> -->\n                  </div>\n              </div>\n          </div>\n      </div>\n      <footer class=\"footer\">\n          <div class=\"container\">\n              <p class=\"copyright pull-right\">\n                  &copy;\n                  <script>\n                      document.write(new Date().getFullYear())\n                  </script>\n                  Creado por: Julián Romero Salazar\n              </p>\n          </div>\n      </footer>\n  </div>\n</div>\n\n"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n      <div class=\"navbar-header\">\n          <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n              <span class=\"sr-only\">Toggle navigation</span>\n              <span class=\"icon-bar\"></span>\n              <span class=\"icon-bar\"></span>\n              <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n      </div>\n      <div class=\"collapse navbar-collapse\">\n          <ul class=\"nav navbar-nav navbar-right\">\n            <li>\n                <a [routerLink]=\"['/security/new']\"> <!--  href=\"{{ getNewUser() }}\" -->\n                    <i class=\"material-icons\">person_add</i> Regístrate\n                </a>\n            </li>\n            <li class=\"active\">\n                <a [routerLink]=\"['/security/login']\"> <!-- href=\"{{ getLoginUser() }}\"-->\n                    <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                </a>\n            </li>\n            <li>\n                <a [routerLink]=\"['/security/lock']\"> <!-- href=\"javascript:void(0)\"-->\n                    <i class=\"material-icons\">lock_open</i> Olvide clave?\n                </a>\n            </li>\n          </ul>\n      </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page toggle\">\n  <div class=\"full-page login-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/login.jpeg\">\n      <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n      <div class=\"content\">\n          <div class=\"container\">\n              <div class=\"row\">\n                  <div class=\"col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3\">\n                      <!-- <form> -->\n                          <div class=\"card card-login card-hidden\">\n                              <div class=\"card-header text-center\" data-background-color=\"blue\">\n                                  <h4 class=\"card-title\">Inicio de sesión</h4>\n                                  <div class=\"social-line\">\n                                      <button type=\"button\" class=\"btn btn-just-icon btn-simple\" (click)=\"getAuthenticaFacebook()\">\n                                            <i class=\"fa fa-facebook-square\"></i>\n                                      </button>\n                                      <button type=\"button\" class=\"btn btn-just-icon btn-simple\" (click)=\"getAuthenticaGoogle()\">\n                                            <i class=\"fa fa-google-plus\"></i>\n                                      </button>\n                                  </div>\n                              </div>\n                              <p class=\"category text-center\">\n                                  ó Ingreso clasico\n                              </p>\n                              <div class=\"card-content\">\n                                  <div class=\"input-group\">\n                                      <span class=\"input-group-addon\">\n                                          <i class=\"material-icons\">email</i>\n                                      </span>\n                                      <div class=\"form-group label-floating\">\n                                          <label class=\"control-label\">Correo electronico</label>\n                                          <input type=\"email\" class=\"form-control\" (input)=\"txtEmail=$event.target.value\">\n                                      </div>\n                                  </div>\n                                  <div class=\"input-group\">\n                                      <span class=\"input-group-addon\">\n                                          <i class=\"material-icons\">lock_outline</i>\n                                      </span>\n                                      <div class=\"form-group label-floating\">\n                                          <label class=\"control-label\">Clave de acceso</label>\n                                          <input type=\"password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\">\n                                      </div>\n                                  </div>\n                              </div>\n                              <div class=\"footer text-center\">\n                                  <button type=\"button\" class=\"btn btn-info btn-simple btn-wd btn-lg\" (click)=\"getValidarUsers()\">Acceder</button>\n                              </div>\n                          </div>\n                      <!-- </form> -->\n                  </div>\n              </div>\n          </div>\n      </div>\n      <footer class=\"footer\">\n          <div class=\"container\">\n              <p class=\"copyright pull-right\">\n                  &copy;\n                  <script>\n                      document.write(new Date().getFullYear())\n                  </script>\n                  Creado por: Julián Romero Salazar\n              </p>\n          </div>\n      </footer>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -1521,8 +1583,6 @@ var LoginPage = /** @class */ (function () {
                 $('.main-panel-security').addClass('main-panel');
                 //inicia control
                 $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
-                //Actualiza control del menu
-                //if(mdp){ mdp.initSidebarsCheck(); }        
                 //redireccionamiento
                 _this.router.navigate(['/dashboard']);
             }, function (error) {
@@ -1566,7 +1626,7 @@ var LoginPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\" active \">\n                    <a href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLoginUser()}}\">\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li class=\"\">\n                    <a href=\"{{getLockUser()}}\">\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/register.jpeg\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"card card-signup card-hidden\">\n                        <h2 class=\"card-title text-center\">Registro de usuarios</h2>\n                        <div class=\"row\">\n                            <div class=\"col-md-5 col-md-offset-1\">\n                                <div class=\"card-content\">\n                                    <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-primary\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Comunidapp</h4>\n                                            <p class=\"description\">\n                                                Aplicación multiplataforma, que permite crear lazos más estrechos entre las universidades y la comunidad en la Localidad de la Candelaria. Mediante un sistema que permitirá a la comunidad registrar proyectos sociales y a los universitarios de la localidad generar dos tipos de aportes (comentarios avanzados y participar en solución de necesidades).\n                                            </p>\n                                        </div>\n                                    </div>\n                                    <!-- <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-info\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Universidades amigas</h4>\n                                            <p class=\"description\">\n                                                El eje centrar de la plataforma es crear lazos más estrechos entre las universidades y la comunidad en la candelaria.\n                                            </p>\n                                        </div>\n                                    </div> -->\n                                </div>\n                            </div>\n                            <div class=\"col-md-5\">\n                                <!-- <div class=\"social text-center\">\n                                    <button class=\"btn btn-just-icon btn-round btn-twitter\">\n                                        <i class=\"fa fa-twitter\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-dribbble\">\n                                        <i class=\"fa fa-dribbble\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-facebook\">\n                                        <i class=\"fa fa-facebook\"> </i>\n                                    </button>\n                                    <h4> or be classical </h4>\n                                </div> -->\n                                <form class=\"form\" method=\"\" action=\"\">\n                                    <div class=\"card-content\">\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">mail</i>\n                                            </span>\n                                            <input type=\"text\" class=\"form-control\" placeholder=\"Correo...\" (input)=\"txtEmail=$event.target.value\">\n                                        </div>\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\"/>\n                                        </div>\n\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Confirmar password\" class=\"form-control\" (input)=\"txtConfirmarPassword=$event.target.value\"/>\n                                        </div>         \n\n                                        <!-- If you want to add a checkbox to this form, uncomment this code -->\n                                        <!-- <div class=\"checkbox\">\n                                            <label>\n                                                <input type=\"checkbox\" name=\"optionsCheckboxes\" (input)=\"uiCheck=$event.target.value\"> Acepto los\n                                                <a href=\"#something\">terminos y condiciones</a>.\n                                            </label>\n                                        </div> -->\n                                    </div>\n                                    <div class=\"footer text-center\">\n                                        <button type=\"button\" class=\"btn btn-primary btn-round\" (click)=\"getValidarUsers()\">Registrarse</button>\n                                    </div>\n                                </form>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">Comunidapp</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"active\">\n                    <a [routerLink]=\"['/security/new']\"> <!--  href=\"{{ getNewUser() }}\" -->\n                        <i class=\"material-icons\">person_add</i> Regístrate\n                    </a>\n                </li>\n                <li>\n                    <a [routerLink]=\"['/security/login']\"> <!-- href=\"{{ getLoginUser() }}\"-->\n                        <i class=\"material-icons\">fingerprint</i> Inicia sesión\n                    </a>\n                </li>\n                <li>\n                    <a [routerLink]=\"['/security/lock']\"> <!-- href=\"javascript:void(0)\"-->\n                        <i class=\"material-icons\">lock_open</i> Olvide clave?\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n    <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"https://julianromerosalazar.github.io/Comunidapp/assets/img/register.jpeg\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"card card-signup card-hidden\">\n                        <h2 class=\"card-title text-center\">Registro de usuarios</h2>\n                        <div class=\"row\">\n                            <div class=\"col-md-5 col-md-offset-1\">\n                                <div class=\"card-content\">\n                                    <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-primary\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Comunidapp</h4>\n                                            <p class=\"description\">\n                                                Aplicación multiplataforma, que permite crear lazos más estrechos entre las universidades y la comunidad en la Localidad de la Candelaria. Mediante un sistema que permitirá a la comunidad registrar proyectos sociales y a los universitarios de la localidad generar dos tipos de aportes (comentarios avanzados y participar en solución de necesidades).\n                                            </p>\n                                        </div>\n                                    </div>\n                                    <!-- <div class=\"info info-horizontal\">\n                                        <div class=\"icon icon-info\">\n                                            <i class=\"material-icons\">group</i>\n                                        </div>\n                                        <div class=\"description\">\n                                            <h4 class=\"info-title\">Universidades amigas</h4>\n                                            <p class=\"description\">\n                                                El eje centrar de la plataforma es crear lazos más estrechos entre las universidades y la comunidad en la candelaria.\n                                            </p>\n                                        </div>\n                                    </div> -->\n                                </div>\n                            </div>\n                            <div class=\"col-md-5\">\n                                <!-- <div class=\"social text-center\">\n                                    <button class=\"btn btn-just-icon btn-round btn-twitter\">\n                                        <i class=\"fa fa-twitter\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-dribbble\">\n                                        <i class=\"fa fa-dribbble\"></i>\n                                    </button>\n                                    <button class=\"btn btn-just-icon btn-round btn-facebook\">\n                                        <i class=\"fa fa-facebook\"> </i>\n                                    </button>\n                                    <h4> or be classical </h4>\n                                </div> -->\n                                <form class=\"form\" method=\"\" action=\"\">\n                                    <div class=\"card-content\">\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">mail</i>\n                                            </span>\n                                            <input type=\"text\" class=\"form-control\" placeholder=\"Correo...\" (input)=\"txtEmail=$event.target.value\">\n                                        </div>\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Password\" class=\"form-control\" (input)=\"txtPassword=$event.target.value\"/>\n                                        </div>\n\n                                        <div class=\"input-group\">\n                                            <span class=\"input-group-addon\">\n                                                <i class=\"material-icons\">lock_outline</i>\n                                            </span>\n                                            <input type=\"password\" placeholder=\"Confirmar password\" class=\"form-control\" (input)=\"txtConfirmarPassword=$event.target.value\"/>\n                                        </div>         \n\n                                        <!-- If you want to add a checkbox to this form, uncomment this code -->\n                                        <!-- <div class=\"checkbox\">\n                                            <label>\n                                                <input type=\"checkbox\" name=\"optionsCheckboxes\" (input)=\"uiCheck=$event.target.value\"> Acepto los\n                                                <a href=\"#something\">terminos y condiciones</a>.\n                                            </label>\n                                        </div> -->\n                                    </div>\n                                    <div class=\"footer text-center\">\n                                        <button type=\"button\" class=\"btn btn-primary btn-round\" (click)=\"getValidarUsers()\">Registrarse</button>\n                                    </div>\n                                </form>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <footer class=\"footer\">\n            <div class=\"container\">\n                <p class=\"copyright pull-right\">\n                    &copy;\n                    <script>\n                        document.write(new Date().getFullYear())\n                    </script>\n                    Creado por: Julián Romero Salazar\n                </p>\n            </div>\n        </footer>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1593,11 +1653,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewPage", function() { return NewPage; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _model_user_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../model/user.model */ "./src/model/user.model.ts");
-/* harmony import */ var _providers_auth_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../providers/auth-data */ "./src/providers/auth-data.ts");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
-/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _validators_email__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../validators/email */ "./src/validators/email.ts");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _validators_email__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../validators/email */ "./src/validators/email.ts");
+/* harmony import */ var _services_usuario_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../services/usuario.services */ "./src/services/usuario.services.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1609,16 +1668,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
-
 //validaciones y conexion
 
 
+
 var NewPage = /** @class */ (function () {
-    function NewPage(router) {
+    function NewPage(router, dbUsuario) {
         this.router = router;
-        new _providers_auth_data__WEBPACK_IMPORTED_MODULE_3__["AuthData"]().logoutUser();
-        localStorage.clear();
+        this.dbUsuario = dbUsuario;
     }
     NewPage.prototype.ngOnInit = function () {
         $(".plt-desktop").removeClass('nav-open');
@@ -1634,10 +1691,14 @@ var NewPage = /** @class */ (function () {
                 $('.card').removeClass('card-hidden');
             }, 700);
             $('ion-app > div.wrapper').perfectScrollbar();
+            $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
-            if (mdp) {
-                mdp.initSidebarsCheck();
+            try {
+                if (mdp) {
+                    mdp.initSidebarsCheck();
+                }
             }
+            catch (e) { }
         });
     };
     NewPage.prototype.getLoginUser = function () {
@@ -1647,30 +1708,33 @@ var NewPage = /** @class */ (function () {
         return "https://julianromerosalazar.github.io/Comunidapp/#/security/lock";
     };
     NewPage.prototype.getValidarUsers = function () {
+        var _this = this;
         if (this.txtPassword == this.txtConfirmarPassword) {
-            if (_validators_email__WEBPACK_IMPORTED_MODULE_5__["EmailValidator"].isValid(this.txtEmail)) {
+            if (_validators_email__WEBPACK_IMPORTED_MODULE_3__["EmailValidator"].isValid(this.txtEmail)) {
                 //Ejecuta metodo evento promesa
-                firebase__WEBPACK_IMPORTED_MODULE_4__["auth"]().createUserWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
-                    //lineas para almacenamiento - informacion del usuario
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].displayName = (authData.user.displayName ? authData.user.displayName : ""),
-                        _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].email = (authData.user.email ? authData.user.email : ""),
-                        _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].photoURL = (authData.user.photoURL ? authData.user.photoURL : ""),
-                        _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].uid = (authData.user.uid ? authData.user.uid : ""),
-                        _model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"].providerData = (authData.user.providerData ? authData.user.providerData : []),
-                        localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_2__["User"]));
+                firebase__WEBPACK_IMPORTED_MODULE_2__["auth"]().createUserWithEmailAndPassword(this.txtEmail, this.txtPassword).then(function (authData) {
+                    //lineas para eliminar sesion del usuario
+                    localStorage.clear();
+                    //Crea datos del usuario
+                    //registra la información del nuevo usuario;  
+                    _this.dbUsuario.insertUsuario(authData.user.uid, {
+                        Email: authData.user.email,
+                        IdUniversidad: '',
+                        Nombres: "Usuario",
+                        QuienSoy: '',
+                        Telefono: '',
+                        URLPhoto: "https://julianromerosalazar.github.io/Comunidapp/assets/img/default-avatar.png",
+                        Estado: '1',
+                        Perfil: '0',
+                        FechaUltimoIngreso: new Date().toISOString(),
+                        FechaCreacion: new Date().toISOString()
+                    });
                     //redireccionamiento
-                    demo.Alerta("Creación usuario", "Usuario creado correctamente.", "success");
-                    //Finaliza sesion - control de seguridad uso de buenas practicas 
-                    // anti crfs
-                    // firebase.auth().signOut().then(() => {
-                    //   this.router.navigate(['/security/login']);
-                    // });
+                    demo.Alerta("Creación usuario", "Usuario creado correctamente, ingresa tus datos para continuar.", "success");
+                    _this.router.navigate(['/security/login']);
                 }, function (error) {
                     demo.Alerta("Creación usuario", "datos invalidos, verifique e intente nuevamente.", "warning");
-                    console.log("Error creación fallido");
-                    if (localStorage.getItem("currentUser")) {
-                        localStorage.removeItem("currentUser");
-                    }
+                    localStorage.clear();
                 });
             }
             else {
@@ -1686,8 +1750,9 @@ var NewPage = /** @class */ (function () {
             selector: 'app-new',
             template: __webpack_require__(/*! ./new.page.html */ "./src/app/dashboard/security/new/new.page.html"),
             styles: [__webpack_require__(/*! ./new.page.scss */ "./src/app/dashboard/security/new/new.page.scss")],
+            providers: [_services_usuario_services__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]],
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_usuario_services__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]])
     ], NewPage);
     return NewPage;
 }());
@@ -1703,7 +1768,7 @@ var NewPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h6>\n                            <div class=\"icon\">\n                                <img class=\"img\" src=\"{{(item)?.URLProyecto}}\" style=\"width:70%;border-radius:10%;box-shadow:2px 6px 15px 2px white;\">\n                            </div>\n                            <h3 class=\"card-title\">\n                                Avances {{(item)?.Avances}} %\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n                            <p class=\"card-footer text-center\">\n                                Likes {{(item)?.Descripcion}}\n                            </p>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe un mensaje...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>  \n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>                          \n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <!-- <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div> -->\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                            <!-- <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6> -->\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngFor=\"let item of itemProyectos; let impar = odd;let par = even;\">\n            <div class=\"col-md-6\">\n                <div class=\"col-lg-12\">\n                    <div class=\"card card-pricing card-plain\">\n                        <div class=\"content\">\n                            <h6 class=\"category\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">\n                                    {{(item)?.Nombre}}\n                                </a>\n                            </h6>\n                            <div class=\"icon\">\n                                <img class=\"img\" src=\"{{(item)?.URLProyecto}}\" style=\"width:70%;border-radius:10%;box-shadow:2px 6px 15px 2px white;\">\n                            </div>\n                            <h3 class=\"card-title\">\n                                Avances {{(item)?.Avances}} %\n                            </h3>\n                            <p class=\"card-description\">\n                                {{(item)?.Descripcion}}\n                            </p>\n                            <div class=\"card-footer text-center\" *ngIf=\"item.Likes_Number > 0\">\n                                <h6 class=\"card-title\">Likes: {{item.Likes_Number}}</h6>\n                                <div *ngFor=\"let itemLikes of item.Likes;\">\n                                    <a [routerLink]=\"['/pages/userline']\" [queryParams]=\"{ filter: itemLikes.IdUsuario }\">\n                                        <img src=\"{{(itemLikes)?.URLPhoto}}\"  title=\"Aplicó el: {{(itemLikes)?.FechaCreacion | date:'dd/MM/yyyy'}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\">\n                                    </a>\n                                </div>\n                            </div>\n\n\n                            <div class=\"input-group\">\n                                <span class=\"input-group-addon\">\n                                    <i class=\"material-icons\">chat</i>\n                                </span>\n                                <textarea class=\"form-control\" placeholder=\"Escribe tú aporte o comentario...\" rows=\"3\" (change)=\"txtComentarioTexto=$event.target.value\"></textarea>\n                            </div>\n                            <div class=\"footer text-center\">\n                                <button type=\"button\" class=\"btn btn-white btn-round\" (click)=\"insComentario(item.$key)\">Envíar comentario</button>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <ul class=\"timeline timeline-simple\">\n\n\n                    <li class=\"timeline-inverted\" *ngFor=\"let itemComentario of item.Comentarios; let iComent = index\">\n                        <div class=\"timeline-badge\" [ngClass]=\"{'success' : par , 'info' : impar}\">\n                            <i class=\"material-icons\">fingerprint</i>\n                        </div>\n                        <div class=\"timeline-panel\">\n                            <div class=\"timeline-heading\">\n                                <span class=\"label\" [ngClass]=\"{'label-success' : par , 'label-info' : impar}\">Comentario # {{iComent + 1}}</span>\n                            </div>\n                            <div class=\"timeline-body\">\n                                <p>\n                                    <a [routerLink]=\"['/pages/userline']\" [queryParams]=\"{ filter: (itemComentario)?.idUsuario }\">\n                                        <img src=\"{{(itemComentario)?.URLPhoto}}\" style=\"height:35px;width:35px;padding:4px;border-radius:50%;\" title=\"Ver perfil\">\n                                    </a>\n                                    {{(itemComentario)?.Descripcion}}\n                                </p>\n                            </div>\n                            <h6>\n                                <i class=\"ti-time\"></i> Comentado: {{(itemComentario)?.FechaCreacion | date: 'dd/MM/yyyy HH:mm'}}\n                            </h6>\n                        </div>\n                        <div class=\"timeline-panel\" *ngIf=\"itemComentario.$key=='...'\">\n                            <div class=\"timeline-body text-center\">\n                                <a [routerLink]=\"['/widgets']\" [queryParams]=\"{ filter: item.Nombre }\">Leer mas...</a>\n                            </div>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n        \n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1794,7 +1859,7 @@ var WidgetsComponent = /** @class */ (function () {
                     for (var i in y["Comentarios"]) {
                         iLengthComentario++;
                     }
-                    //fin recorrido de comentarios
+                    //fin recorrido de comentarios           
                     for (var i in y["Comentarios"]) {
                         iComentario++;
                         if (iComentario >= iLengthComentario - 3) {
@@ -1810,6 +1875,22 @@ var WidgetsComponent = /** @class */ (function () {
                     }
                     //Ordena los comentarios de ultimo a primero
                     y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
+                    //Likes
+                    var objLikes;
+                    objLikes = [];
+                    var iLikes = 0;
+                    for (var i in y["Likes"]) {
+                        iLikes++;
+                        objLikes.push({
+                            $key: i,
+                            IdUsuario: y["Likes"][i]["IdUsuario"],
+                            FechaCreacion: y["Likes"][i]["FechaCreacion"],
+                            URLPhoto: y["Likes"][i]["URLPhoto"]
+                        });
+                    }
+                    y["Likes_Number"] = iLikes; //Total likes                    
+                    y["Likes"] = objLikes; //likes de ultimo a primero
+                    //End likes
                     _this.itemProyectos.push(y);
                 });
             });
@@ -1837,17 +1918,25 @@ var WidgetsComponent = /** @class */ (function () {
                     }
                     //ordena los comentarios de ultimo a primero
                     y["Comentarios"] = objComentarios.sort(function (a, b) { return b.Id - a.Id; });
-                    // for (var i in y["Avance"]) {
-                    //     y["Avance"][i]["$key"]=i;//identificador Avance
-                    // }
-                    // for (var i in y["Likes"]) {
-                    //     y["Likes"][i]["$key"]=i;//identificador Likes
-                    // }
+                    //Likes
+                    var objLikes;
+                    objLikes = [];
+                    var iLikes = 0;
+                    for (var i in y["Likes"]) {
+                        iLikes++;
+                        objLikes.push({
+                            $key: i,
+                            IdUsuario: y["Likes"][i]["IdUsuario"],
+                            FechaCreacion: y["Likes"][i]["FechaCreacion"],
+                            URLPhoto: y["Likes"][i]["URLPhoto"]
+                        });
+                    }
+                    y["Likes_Number"] = iLikes; //Total likes                    
+                    y["Likes"] = objLikes; //likes de ultimo a primero
+                    //End likes
                     _this.itemProyectos.push(y);
                 });
             });
-            //this.itemProyectos.sort((a,b)=>b.Id - a.Id);
-            //this.itemProyectos.filter(x=> x.id>5);
         }
     };
     WidgetsComponent.prototype.insComentario = function (idProyecto) {
