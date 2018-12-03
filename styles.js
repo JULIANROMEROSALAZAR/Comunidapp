@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\app_Front\src\theme\variables.scss */"./src/theme/variables.scss");
-module.exports = __webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\app_Front\src\global.scss */"./src/global.scss");
+__webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\Comunidapp\src\theme\variables.scss */"./src/theme/variables.scss");
+module.exports = __webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\Comunidapp\src\global.scss */"./src/global.scss");
 
 
 /***/ })

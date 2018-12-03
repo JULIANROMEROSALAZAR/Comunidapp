@@ -63,7 +63,12 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+                    // preload all modules; optionally we could
+                    // implement a custom preloading strategy for just some
+                    // of the modules (PRs welcome)
+                    preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"]
+                })],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         })
     ], AppRoutingModule);
@@ -122,7 +127,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // Initialize Firebase
+        //Initialize Firebase
         firebase__WEBPACK_IMPORTED_MODULE_3__["auth"]().onAuthStateChanged(function (user) {
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
             $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
@@ -134,11 +139,11 @@ var AppComponent = /** @class */ (function () {
             }
             else {
                 //lineas para almacenamiento - informacion del usuario
-                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].displayName = (user.displayName ? user.displayName : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].email = (user.email ? user.email : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].photoURL = (user.photoURL ? user.photoURL : ""),
-                    _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].uid = (user.uid ? user.uid : ""),
-                    localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
+                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].displayName = (user.displayName ? user.displayName : "");
+                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].email = (user.email ? user.email : "");
+                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].photoURL = (user.photoURL ? user.photoURL : "");
+                _model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"].uid = (user.uid ? user.uid : "");
+                localStorage.setItem("currentUser", JSON.stringify(_model_user_model__WEBPACK_IMPORTED_MODULE_4__["User"]));
                 if (_this.location.prepareExternalUrl(_this.location.path()).toLowerCase().substring(0, 16) == '#/security/login') {
                     $('.main-panel-security').addClass('main-panel');
                     //Redireccionamiento a la pagina home
@@ -718,6 +723,15 @@ var ExtendedFormsComponent = /** @class */ (function () {
                 max: 100
             }
         });
+    };
+    ExtendedFormsComponent.prototype.selectFile = function (event) {
+        var file = event.target.files.item(0);
+        if (file.type.match('image.*')) {
+            this.selectedFiles = event.target.files;
+        }
+        else {
+            alert('invalid format!');
+        }
     };
     ExtendedFormsComponent.prototype.CambioEstado = function (value) {
         if (value == "true") {
@@ -1419,6 +1433,7 @@ var LockPage = /** @class */ (function () {
     }
     LockPage.prototype.ngOnInit = function () {
         $(".plt-desktop").removeClass('nav-open');
+        $(".plt-mobile").removeClass('nav-open');
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
@@ -1533,19 +1548,13 @@ var LoginPage = /** @class */ (function () {
     }
     LoginPage.prototype.ngOnInit = function () {
         $(".plt-desktop").removeClass('nav-open');
+        $(".plt-mobile").removeClass('nav-open');
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/init/initMenu.js');
         //material-dashboard-angular.js
         $().ready(function () {
-            //Efectomivimiento en imagen
-            demo.checkFullPageBackgroundImage();
-            setTimeout(function () {
-                // after 1000 ms we add the class animated to the login/register card
-                $('.card').removeClass('card-hidden');
-            }, 700);
-            $('ion-app > div.wrapper').perfectScrollbar();
             //Actualiza control del menu
             try {
                 if (mdp) {
@@ -1553,6 +1562,20 @@ var LoginPage = /** @class */ (function () {
                 }
             }
             catch (e) { }
+            //Efectomivimiento en imagen
+            demo.checkFullPageBackgroundImage();
+            setTimeout(function () {
+                // after 1000 ms we add the class animated to the login/register card
+                $('.card').removeClass('card-hidden');
+            }, 700);
+            //Inicio - posición inicial
+            var body = $(".main-panel");
+            var top = body.scrollTop(); // Get position of the body
+            if (top != 0) {
+                body.animate({ scrollTop: 0 }, '1500');
+            }
+            //Fin - posicion inicial
+            $('ion-app > div.wrapper').perfectScrollbar();
         });
     };
     LoginPage.prototype.getAuthenticaGoogle = function () {
@@ -1679,6 +1702,7 @@ var NewPage = /** @class */ (function () {
     }
     NewPage.prototype.ngOnInit = function () {
         $(".plt-desktop").removeClass('nav-open');
+        $(".plt-mobile").removeClass('nav-open');
         $('.main-panel').addClass('main-panel-security');
         $('.main-panel-security').removeClass('main-panel');
         $.getScript('https://julianromerosalazar.github.io/Comunidapp/assets/js/demo.js');
@@ -2096,9 +2120,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(router, router_act, location) {
+    function NavbarComponent(router, router_act, objSalir, location) {
         this.router = router;
         this.router_act = router_act;
+        this.objSalir = objSalir;
         this.txtBuscar = '';
         this.location = location;
     }
@@ -2139,7 +2164,7 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.getSalir = function () {
         var _this = this;
         localStorage.clear();
-        new _providers_auth_data__WEBPACK_IMPORTED_MODULE_5__["AuthData"]().logoutUser().then(function () {
+        this.objSalir.logoutUser().then(function () {
             _this.router.navigate(['/security/login']);
         });
     };
@@ -2158,7 +2183,7 @@ var NavbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/shared/navbar/navbar.component.html"),
             providers: [_providers_auth_data__WEBPACK_IMPORTED_MODULE_5__["AuthData"]]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _providers_auth_data__WEBPACK_IMPORTED_MODULE_5__["AuthData"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -3066,7 +3091,7 @@ var EmailValidator = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\app_Front\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\romerojuls\Desktop\Universidad\Proyecto\Comunidapp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
